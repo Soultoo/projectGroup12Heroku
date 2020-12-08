@@ -1,4 +1,3 @@
-import React from 'react';
 import myHeaders from "../api/apiConfig";
 
 
@@ -13,8 +12,8 @@ function handleHTTPError(response) {
 }
 
 
-function apiCall({ params, requestOptions }) {
-    /*return fetch("https://api.imgur.com/3/gallery/" + params, requestOptions)
+function apiCall( params ) {
+    /*return fetch("https://api.imgur.com/3/" + params, requestOptions)
         .then(handleHTTPError)
         .then(response => response.json());
         */
@@ -24,24 +23,24 @@ function apiCall({ params, requestOptions }) {
             'X-Mashape-Key': API_KEY
         }
     })
+    .then(handleHTTPError)
+    .then(response => response.json());
 }
 
 export default function searchImages( query ) {
-    let formdata = new FormData();
+   /* let formdata = new FormData();
 
     let requestOptions = {
         method: 'GET',
         headers: myHeaders,
         body: formdata,
         redirect: 'follow'
-    };
+    };*/
 
     let searchString;
     (!query) ? searchString = "" : searchString = ("query=" + query);
-    return apiCall("recipes/search?" + new URLSearchParams(searchString))
-        // leave out the unimportant parts of the response data
-        .then(data => (data.results));
-    /*let searchString = "search/?";
+    return apiCall("recipes/search?" + new URLSearchParams(searchString)).then(data => (data.results));
+    /*let searchString = "gallery/search/?";
     (!query) ? searchString += "" : searchString += "q=" + query;
 
     return apiCall(searchString, requestOptions).then(data => (data.results));*/

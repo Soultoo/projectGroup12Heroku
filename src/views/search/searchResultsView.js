@@ -1,9 +1,9 @@
-export default function SearchResultsView({ searchResults }) {
+export default function SearchResultsView( {searchResults} ) {
     <div>
-        {searchResults.map(image =>
-            <span onClick={() => console.log(image.id)} key={image.id} class="searchResult">
+        {searchResults.map(item =>
+            <span onClick={() => console.log(item.id)} key={item.id} class="searchResult">
                 <div class="searchtitle">
-                    {image.title}
+                    {item.title}
                 </div>
             </span>)
         } </div>

@@ -8,20 +8,15 @@ import promiseNoData from "../api/promiseNoData";
 export default function Search() {
     const [query, setQuery] = React.useState("");
     const [promise, setPromise] = React.useState(null);
-    React.useEffect(() => setPromise(searchImages("tofu")),
-        [query]); 
+    React.useEffect(() => setPromise(searchImages()),
+        []); 
     const [data, error] = usePromise(promise);
-
-   /* return (<div>
-        <input type="text" onChange={event => setQuery(event.target.value)}></input>
-        <button onClick={() => setPromise(searchImages( query ))}>Search!</button>
-    </div>);
-    */
+    console.log(data);
     return (SearchFormView({
         onText: query => setQuery( query ),
-        onSearch: () => setPromise(searchImages( query ))
+        onSearch: () => setPromise(searchImages( query ).then(console.log(data)))
     })
-        , promiseNoData(promise, data, error) || SearchResultsView({ data })
+        ,promiseNoData(promise, data, error) || SearchResultsView( {data} )
     );
 }
 
