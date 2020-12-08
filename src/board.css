@@ -1,0 +1,52 @@
+.tiles {
+    width: 95px;
+    height: 95px;
+    position: absolute;
+    background: black;
+    transition: all 0.1s ease-in-out;
+    border-radius: 2px;
+    background-image: url('@{bg-image}');
+    background-size: 400px 400 px;
+    
+}
+
+.opteasy {
+    background-color: teal;
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    
+}
+
+.optmedium {
+    background-color: teal;
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.opthard {
+    background-color: teal;
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.board {
+    width: 405px;
+    height: 405px;
+    position: relative;
+    background: white;
+}
