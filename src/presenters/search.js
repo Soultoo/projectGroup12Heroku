@@ -19,7 +19,7 @@ export default function Search() {
        <React.Fragment>
             <SearchFormView onText={query => setQuery( query )} onSearch={() => setPromise(searchImages( query ))}/>
            
-            <promiseNoData/>||<SearchResultsView searchResults = { data }/>
+           {promiseNoData(promise, data, error) || <SearchResultsView searchResults = { data }/>} 
         </React.Fragment>
     );
 }

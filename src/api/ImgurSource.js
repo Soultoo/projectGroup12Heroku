@@ -39,15 +39,15 @@ export default function searchImages( query ) {
     return apiCall("recipes/search?" + new URLSearchParams(searchString))
     .then(data => (data.results));
 
-     /*
+     
      // Imgur API setup version
-    let formdata = new FormData();
-
+   // let formdata = new FormData();
+/*
     let requestOptions = {
         method: 'GET',
         headers: myHeaders,
-        body: formdata,
-        redirect: 'follow'
+      //  body: formdata,
+      //  redirect: 'follow'
     };
 
     let searchString;
