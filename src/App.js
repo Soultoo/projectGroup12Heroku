@@ -53,6 +53,13 @@ import Show from "./js/show";
 
 const firestore = firebase.firestore();
 
+
+
+
+
+
+
+
 function testDB() {
   const collTest = firestore.collection("highScores").doc("testId");
   collTest.get()
@@ -96,6 +103,20 @@ const setUpGameNav=()=> window.location.hash="setupgame";
 const highScoreNav=()=> window.location.hash="highscores";
 const homeScreenNav=()=> window.location.hash="homescreen";
 const gameNav=()=> window.location.hash="game";
+
+
+function defaultRoute(){
+  if(! ["#setupgame", "#highscores", "#homescreen", "#game"].find(knownRoute=>
+      (knownRoute === window.location.hash)))
+      window.location.hash="#homescreen";
+}
+
+defaultRoute();
+
+window.addEventListener("hashchange", ()=>defaultRoute());
+
+
+
 
 
 
