@@ -10,24 +10,13 @@ export default function Search() {
     React.useEffect(() => setPromise(searchImages()),
         []); 
     const [data, error] = usePromise(promise);
-    //Kommentera bort för att kunna dubbelkolla att vi får ut data
-    //console.log(data);
+    
+    console.log(data);
     return (
-        //HERE is issues
-        //det här, från kommentaren längst ner:  ,promiseNoData(promise, data, error) || SearchResultsView( {searchResults: data} )
-        //behöver bli översatt till att fungera på något sätt, kanske enligt modellen nedanför
        <React.Fragment>
             <SearchFormView onText={query => setQuery( query )} onSearch={() => setPromise(searchImages( query ))}/>
            
-           {promiseNoData(promise, data, error) || <SearchResultsView searchResults = { data }/>} 
+           {promiseNoData(promise, data, error) || <SearchResultsView searchResults = { data.data }/>} 
         </React.Fragment>
     );
 }
-        
-        /*
-        SearchFormView( {onText: query => setQuery( query ), onSearch: () => setPromise(searchImages( query )) } )
-        ,promiseNoData(promise, data, error) || SearchResultsView( {searchResults: data} )
-    );
-}*/
-
-

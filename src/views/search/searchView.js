@@ -2,10 +2,10 @@
 
 export const SearchResultsView=({searchResults})=>{
 return (<div>{ 
-  searchResults.map(dish=>
-      <span key={dish.id} class="searchResult">
+  searchResults.map(album=>
+      <span key={album.id} class="searchResult">
           <div class="searchtitle">
-              {dish.title}
+              {album.title}
           </div>
       </span>)
     } </div>);
