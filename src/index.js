@@ -4,12 +4,39 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// De verkar vilja att man stoppar in reduxgrejerna här så har dem här tillfälligt ELLER INTE abort
+
+// redux
+
+import { createStore } from "redux";
+
+
+
+import { Provider } from "react-redux";
+
+import { allReducers } from "./redux-model/reducers";
+//console.log(counter); importeras rätt
+
+
+
+
+let store = createStore(
+  allReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+console.log(store.getState());
+
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+    
+      <App />
+    
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
