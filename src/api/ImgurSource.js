@@ -14,7 +14,7 @@ function apiCall( params, requestOptions ) {
         .then(response => response.json());
 }
 
-export default function searchImages( query ) {
+export const searchAlbums=( query ) =>{
     var requestOptions = {
         method: 'GET',
         headers: myHeaders,
@@ -24,6 +24,17 @@ export default function searchImages( query ) {
     let searchString;
     (!query) ? searchString = "cats" : searchString =  query;
 
-    return apiCall("gallery/search/?q=" + new URLSearchParams(searchString), requestOptions);
+    return apiCall("gallery/search/?mature=false&q=" + new URLSearchParams(searchString), requestOptions);
     
+}
+export const getImages=(id)=>{
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+      };
+    let searchparam = "gallery/album/" + id;
+    return apiCall("gallery/album/" + new URLSearchParams(searchparam), requestOptions)
+    .then(results => results.images).then(results=>console.log(results));
+
 }
