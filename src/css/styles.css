@@ -23,6 +23,7 @@
   border:none;
   padding: 10px;
 }
+
 .button-container{
   margin:auto;
   width:max-content;
@@ -56,13 +57,38 @@ button:active {
 }
 
 button:focus{outline:none;}
+
 button.start{
   margin:auto;
 }
 
+button.highscore{
+float:right;}
+
 h1 {
   font-size: 60px;
   font-weight: bold;
-  margin:0.5rem;
+  margin:auto;
   color:#2C423F;
+}
+h1.highscore{
+float:center;}
+
+h2 {
+  font-size: 45px;
+}
+
+.highscore-container{
+  border:solid 1px;
+  align-content: center;
+}
+
+table.highscore{
+  margin:auto;
+}
+th.highscore {font-style:italic ;}
+th.highscore,td.highscore{
+  padding-bottom:0.5rem;
+  padding-right:1rem ;
+  
 }
