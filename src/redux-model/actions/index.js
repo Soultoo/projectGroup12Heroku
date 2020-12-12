@@ -37,3 +37,27 @@ export const setSearchQuery = (query) => {
     payload: query
   }
 }
+
+
+export const setSearchPromise = (promise) => {
+  return {
+    type: "SETSEARCHPROMISE",
+    payload: promise
+  }
+}
+
+export const setImagePromise = (promise) => {
+  return {
+    type: "SETIMAGEPROMISE",
+    payload: promise
+  }
+}
+
+
+export const setChosenAlbum = (id) => {
+  return {
+    type:"SETCHOSENALBUM",
+    payload:id
+}
+
+}

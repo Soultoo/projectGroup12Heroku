@@ -25,6 +25,7 @@ export const searchAlbums=( query ) =>{
     (!query) ? searchString = "cats" : searchString =  query;
 
     return apiCall("gallery/search/?mature=false&q=" + new URLSearchParams(searchString), requestOptions);
+    // lagt till mature=false för att förhoppningsvis censurera en aning :3
     
 }
 export const getImages=(id)=>{
@@ -33,8 +34,9 @@ export const getImages=(id)=>{
         headers: myHeaders,
         redirect: 'follow'
       };
-    let searchparam = "gallery/album/" + id;
+    let searchparam;
+    (!id) ? searchparam = "": searchparam = id;
     return apiCall("gallery/album/" + new URLSearchParams(searchparam), requestOptions)
-    .then(results => results.images).then(results=>console.log(results));
+    .then(results => results.images);
 
 }

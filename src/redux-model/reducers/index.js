@@ -30,11 +30,27 @@ export const searchQueryRed = (state = "", action) => {
   return ((action.payload || action.payload === "") && action.type == "SETSEARCHQUERY") ? action.payload : state;
 }
 
+export const searchPromiseRed = (state = "", action)=>{
+  return ((action.payload || action.payload === "") && action.type == "SETSEARCHPROMISE") ? action.payload : state;
+}
+
+export const imagePromiseRed = (state = "", action) => {
+  return ((action.payload || action.payload === "") && action.type == "SETIMAGEPROMISE") ? action.payload : state;
+}
+
+export const chosenAlbumRed = (state = false, action) => {
+  return ((action.payload || action.payload === "") && action.type == "SETCHOSENALBUM") ? action.payload : state;
+
+}
+
 // Combined Reducer
 
 export const allReducers = combineReducers({
   counter: counter,
   gameRunRed:gameRunRed,
   numberOfTilesRed:numberOfTilesRed,
-  searchQueryRed:searchQueryRed
+  searchQueryRed:searchQueryRed,
+  searchPromise: searchPromiseRed,
+  imagePromise: imagePromiseRed,
+  chosenAlbumRed: chosenAlbumRed
 });
