@@ -13,15 +13,32 @@
 
 }
 .container{
-  width: 60vw;
-  height: max-content;
+  width: 500px;
   background-color: #dcd0d0;
-  display: block;
+  padding: 10px;
+  border-radius: 12px;
+  border:none;
   margin: auto;
   text-align: center;
-  /*border:#2C423F solid 1px;*/
-  border:none;
-  padding: 10px;
+
+
+}
+@media only screen and (min-width: 600px) { 
+
+  .container{  
+      flex-direction:row;
+      width: 60vw;
+      height: max-content;
+      display: block;
+      padding: 10px;
+
+      /*border:#2C423F solid 1px;*/
+
+    
+  
+  }
+
+
 }
 
 .button-container{
@@ -57,9 +74,12 @@ button:active {
 }
 
 button:focus{outline:none;}
-
+button.back{
+  float:left;
+}
 button.start{
-  margin:auto;
+  /*margin:auto;*/
+  float:right;
 }
 
 button.highscore{
@@ -79,7 +99,6 @@ h2 {
 }
 
 .highscore-container{
-  border:solid 1px;
   align-content: center;
 }
 

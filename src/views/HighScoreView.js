@@ -1,12 +1,12 @@
 const HighScoreView = ({props, nav, scores, addScore}) => {
   return (
     <div>
-      <p>
-        <button onClick = {()=>nav[0]()}>Back</button>
-      </p>
+       <p>
+        <button class="back" onClick = {()=>nav[0]()}>Back</button>
+      </p>    
+      <div class="container">
       
       <h1 class="highscore">PictoSwap</h1>
-      <div class="container">
         <div class="highscore-container">
           <p>
             <button class="highscore" onClick = {()=>nav[1]()}>Continue</button>
