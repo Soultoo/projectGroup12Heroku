@@ -12,16 +12,15 @@ export const Search= () => {
     const query = useSelector(state => state.searchQueryRed);
     const searchReducer = useSelector(state => state.searchPromiseRed);
     const albumPromise = useSelector(state => state.imagePromise);
-    const promise = usePromiseAction(dispatch(), searchAlbums( query ), searchReducer);
     
-    //console.log(data);
+    
+    console.log(data);
     return ( 
        <React.Fragment>
             <SearchFormView 
             onText={query => dispatch(setSearchQuery(query)) } 
-            onSearch={() => dispatch(promise)}/>
-           
-            </React.Fragment>
+            onSearch={() => dispatch(usePromiseAction(dispatch(), searchAlbums( query ), searchReducer))}/>
+        </React.Fragment>
     );
 }
 /*
