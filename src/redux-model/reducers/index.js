@@ -34,14 +34,17 @@ export const searchPromiseRed = (state = "", action)=>{
   return ((action.payload || action.payload === "") && action.type == "SETSEARCHPROMISE") ? action.payload : state;
 }
 
-export const imagePromiseRed = (state = "", action) => {
-  return ((action.payload || action.payload === "") && action.type == "SETIMAGEPROMISE") ? action.payload : state;
+export const imagePromiseRed = (state = null, action) => {
+  return ((action.payload || action.payload === null) && action.type == "SETIMAGEPROMISE") ? action.payload : state;
 }
 
 export const chosenAlbumRed = (state = false, action) => {
   return ((action.payload || action.payload === "") && action.type == "SETCHOSENALBUM") ? action.payload : state;
 
 }
+
+
+
 
 // Combined Reducer
 

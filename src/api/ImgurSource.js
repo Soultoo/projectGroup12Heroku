@@ -36,7 +36,7 @@ export const getImages=(id)=>{
       };
     let searchparam;
     (!id) ? searchparam = "": searchparam = id;
-    return apiCall("gallery/album/" + new URLSearchParams(searchparam), requestOptions)
-    .then(results => results.images);
+    return apiCall("gallery/album/" + new URLSearchParams(searchparam), requestOptions);
+    //.then(results => results.images);
 
 }

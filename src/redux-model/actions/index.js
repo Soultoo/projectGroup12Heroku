@@ -61,3 +61,18 @@ export const setChosenAlbum = (id) => {
 }
 
 }
+
+export const usePromiseAction=(dispatch, promise, actionType)=>{
+  if(!promise)
+       return {
+         type:actionType, 
+         payload:null};  // no ongoing promise
+
+  promise.then(data=>dispatch({type:actionType, payload:data}))
+          .catch(error=>dispatch({type:actionType, payload:error}));
+
+  return {
+    type:actionType, 
+    payload:{}}; 
+                              // ongoing promise, no data or error yet
+}
