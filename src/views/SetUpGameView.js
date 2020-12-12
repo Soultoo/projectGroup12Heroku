@@ -2,13 +2,13 @@ import { Search } from "../presenters/search";
 
 const SetUpGameView = ({props, nav}) => {
   return (
-    <div>
+    <div class="container">
       <p>
-        <button onClick = {()=>nav[0]()}>Back</button>
+        <button class="back" onClick = {()=>nav[0]()}>Back</button>
       </p>
       <Search/>
       <p>
-        <button onClick = {()=>nav[1]()}>Start game!</button>
+        <button class="start" onClick = {()=>nav[1]()}>Start game!</button>
       </p>
     </div>
   )

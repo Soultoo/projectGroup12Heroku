@@ -12,9 +12,9 @@ return (<div>
 
 
 export const SearchFormView=({ onSearch, onText }) =>{
-    return (<div>
-        <input type="text" onChange={event => onText(event.target.value)} placeholder="Example: Cats"></input>
-        <button onClick={() => onSearch()}>Search!</button>
+    return (<div class="searchInput">
+        <input class="search" type="text" onChange={event => onText(event.target.value)} placeholder="Example: Cats"></input>
+        <button class="search" onClick={() => onSearch()}>Search!</button>
     </div>);
 
 
