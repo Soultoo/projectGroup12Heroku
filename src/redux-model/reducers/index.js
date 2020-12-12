@@ -30,11 +30,30 @@ export const searchQueryRed = (state = "", action) => {
   return ((action.payload || action.payload === "") && action.type == "SETSEARCHQUERY") ? action.payload : state;
 }
 
+export const boardSizeRed = (state = [{"posX":2, "posY":3},{"posX":4, "posY":1}], action) => {
+  let boardGrid = new Array()
+  if (action.payload && action.type == "SETBOARDSIZE") {  
+    for (let i= 1, k = action.payload; i <= k; i++){
+      for (let j= 1, k = action.payload; j <= k; j++) {
+        boardGrid = boardGrid.concat({"posX":j, "posY":i})
+      }
+    }
+  }
+  else {
+    return state;
+  } 
+
+  console.log(boardGrid)
+  return  boardGrid
+}
+
 // Combined Reducer
 
 export const allReducers = combineReducers({
   counter: counter,
   gameRunRed:gameRunRed,
   numberOfTilesRed:numberOfTilesRed,
-  searchQueryRed:searchQueryRed
+  searchQueryRed:searchQueryRed,
+  boardSizeRed:boardSizeRed
 });
+// index, position, image, width, height, boardSize (rows, cols)

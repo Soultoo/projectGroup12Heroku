@@ -37,3 +37,11 @@ export const setSearchQuery = (query) => {
     payload: query
   }
 }
+
+export const setBoardSize = (nr) => {
+  return {
+    type: "SETBOARDSIZE",
+    payload: nr
+  }
+}
+// index, position, image, width, height, boardSize (rows, cols)   

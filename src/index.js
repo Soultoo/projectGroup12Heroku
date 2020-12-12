@@ -9,9 +9,6 @@ import reportWebVitals from './reportWebVitals';
 // redux
 
 import { createStore } from "redux";
-
-
-
 import { Provider } from "react-redux";
 
 import { allReducers } from "./redux-model/reducers";
