@@ -8,7 +8,7 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
   return (
     <div>
       <p>
-        <button onClick = {()=>nav[0]()}>Back</button>
+        <button class="back" onClick = {()=>nav[0]()}>Back</button>
       </p>
       
       <p>
@@ -48,6 +48,7 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
                 ></img>)
           }
       </div>
+    </div>
     </div>
   )
 }
