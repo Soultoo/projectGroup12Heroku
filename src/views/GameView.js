@@ -1,3 +1,5 @@
+import Board from "../presenters/board";
+
 const GameView = ({props, nav}) => {
   return (
     <div>
@@ -7,6 +9,7 @@ const GameView = ({props, nav}) => {
       <p>
         <button onClick = {()=>nav[1]()}>Continue</button>
       </p>
+      <Board/>
       <p>
         <button onClick = {()=>null}>Reset round</button>
       </p>

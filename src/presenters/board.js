@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { swapTilesCheck, winCheck, shuffleTilePositions, pictoSwap } from "./boardFunctions";
-
+import { Tile } from "../presenters/tiles";
 
 // function to check if player has completed the game
 
 // Install react motion?
 
-export function Board(props){
-    const { rows, columns, images, boardSize,amountOfTiles } = props;
-    amountOfTiles=rows*columns;
-    boardSize = 400*400;
+export function Board(){
+    //const { rows, columns, images, boardSize,amountOfTiles } = props;
+    const rows = 4;
+    const columns =4;
+    //const images;
+
+    const amountOfTiles=rows*columns;
+    const boardSize = 400*400;
 
     const [tilesArray, setTilesArray] = useState([...Array(amountOfTiles).keys()]);
     const [gameStarted, setGameStarted] = useState(false);
@@ -21,28 +25,21 @@ export function Board(props){
         const shuffledTiles = shuffleTilePositions(tilesArray, rows, columns);
         setTilesArray(shuffledTiles);
     };
-
-      
-       
+ 
     const pictoSwapTile = (index) => {
+        if(swapTilesCheck(tilesArray, index, tilesArray.indexOf(tilesArray.length-1)))
         pictoSwap(index);
     };
- 
     
     let [numberOfTiles, setNumberOfTiles] = useState([...Array(numberOfTiles)]); 
     // another state used to show finished image before started game
-    const [gameStarted, setGameStarted] = useState(false);
-
-    // const gameWon
-    
-    // tile swapping, use swapTilesCheck
-
+    const gameWon = winCheck(tilesArray);
     
     const startGame = () => {
         shuffleTiles();
         setGameStarted(true);
     };
-  
+  /*
     const handleEasyOption = () => {
         let columns = 3;
         let rows = 3;
@@ -61,16 +58,42 @@ export function Board(props){
         let rows = 5;
         let col_row_number = 5;
         
-        }
-    
-    const gameWon = winCheck(tilesArray);
- 
-    }
+        }*/
+     
+return (<div>
+    <div
+    className="board">
+    {tilesArray.map((tile, index) => (
+        <Tile
+        index={index}
+        tile={tile}
+        boardSize={boardSize}
+        onClick={pictoSwapTile()}
+        BOARD_SIZE={boardSize}
+        GRID_SIZE={rows}
+        TILE_COUNT={rows*columns}
+
+        ></Tile>
+    ))}
+    </div>
+    <div>{gameWon && gameStarted?"You solved pictoSwap!":"Keep trying!"}</div>
+        <button onClick={startGame()}>{(gameStarted && !gameWon)?"Start game!":"Shuffle again!"}</button>
+   
+</div>)    
+
+}
 
 export default Board;
 
 
-
+/* <div className="difficultyButton">
+        <button type="button" onClick={()=>handleEasyOption}>Easy</button>
+        <button type="button" onClick={()=>handleMediumOption}>Medium</button>
+        <button type="button" onClick={()=>handleHardOption}>Hard</button>
+        </div>
+        
+        
+        imageChoice={images[tile]}*/
     
 
 
