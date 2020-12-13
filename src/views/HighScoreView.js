@@ -8,29 +8,35 @@ const HighScoreView = ({props, nav, scores, addScore}) => {
       
       <h1 class="highscore">PictoSwap</h1>
         <div class="highscore-container">
-          <p>
+          <div class="highscore hs-button" >
             <button class="highscore" onClick = {()=>nav[1]()}>Continue</button>
-          </p>
-          <h2>High Scores</h2>
-            <div class="highscore-list"> 
+          </div>
+          
+              <div class="highscore-header">
+                <h3 class="highscore">High Scores</h3>
+              </div>
+              <div class="highscore-list"> 
               <table class="highscore">
                 <tbody class="highscore">
                   <tr class="highscore">
-                  <th class="highscore">Name: </th>
-                  <th class="highscore">Time:</th>
+                  <th class="highscore name">Name: </th>
+                  <th class="highscore time">Time:</th>
                   </tr>
                   
                   {scores && scores.map(scoreElement => (
                   <tr class="highscore" key={scoreElement.id}>
-                    <td class="highscore">{scoreElement.name}</td><td>{scoreElement.score}</td>
+                    <td class="highscore name">{scoreElement.name}</td>
+                    <td class="highscore time" >{scoreElement.score}</td>
                   </tr>
                   ))}
                 </tbody>
               </table> {// Här ska stuff vara sen}
               }
-            <button class="highscore" onClick = {()=>addScore()}>:)</button>
-            </div>
+              <div class="hs-button">
+                <button class="addscore" onClick = {()=>addScore()}>Add Score</button>
+              </div>
           </div>
+        </div>
       </div>
     </div>
     

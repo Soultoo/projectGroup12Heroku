@@ -7,12 +7,15 @@ const SetUpGameView = ({props, nav}) => {
         <button class="back" onClick = {()=>nav[0]()}>Back</button>
       </p>
     <div class="container">
-    <h1 class="setupgame">PictoSwap</h1>
-
-      <Search class="setupgame"/>
-      <p>
+      <div class="header">
+        <h1 class="setupgame">PictoSwap</h1>
+      </div>
+      <div class="main">
+        <Search class="setupgame"/>
+      </div>
+      <div class="footer">
         <button class="start" onClick = {()=>nav[1]()}>Start game!</button>
-      </p>
+      </div>
     </div>
     </div>
   )
