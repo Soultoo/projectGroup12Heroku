@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { canSwap, winCheck, shuffleTilePositions, pictoSwap } from "./boardFunctions";
 import { Tile } from "../presenters/tiles";
+import '../board.css'; 
 
 // function to check if player has completed the game
 

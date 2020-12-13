@@ -1,6 +1,5 @@
-import { Board } from "../presenters/board"
 import { Tile } from "../presenters/tiles";
- 
+import 'board.css'; 
 const boardView=({images, boardSize})=>{
 return <div>
             <div

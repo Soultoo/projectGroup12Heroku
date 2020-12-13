@@ -5,7 +5,6 @@
     background: black;
     transition: all 0.1s ease-in-out;
     border-radius: 2px;
-    background-image: url('@{bg-image}');
     background-size: 400px 400 px;
     
 }
