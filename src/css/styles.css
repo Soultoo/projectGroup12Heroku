@@ -186,3 +186,11 @@ button.search{
 }
 
                                     /*  ALBUM  */
+
+.album{
+  border: solid;
+}
+
+.album > img {
+  margin:15px;
+}

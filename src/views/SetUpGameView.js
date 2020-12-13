@@ -7,46 +7,49 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
 
   return (
     <div>
+   
+      <button class="back" onClick = {()=>nav[0]()}>Back</button>
+      <div class="container">
+      <div class="header">
+        <h1 class="setupgame">PictoSwap</h1>
+      </div>
       <p>
-        <button class="back" onClick = {()=>nav[0]()}>Back</button>
+        <button class="start" onClick = {()=>nav[1]()}>Start game!</button>
       </p>
-      
-      <p>
-        <button onClick = {()=>nav[1]()}>Start game!</button>
-      </p>
+    
+      <div class="search searchgrid">
+        <div class="searchmain">
+          <form >
+            <input class="search" onBlur={function(event) {setSearchQuery(event.target.value);}} placeholder={"Example: Cats"}>
+              </input>
+          </form>
+        </div>
 
-
-      <form>
-      <input onBlur={function(event) {setSearchQuery(event.target.value);}}>
-        </input>
-      </form>
-
-        <div>
-        <button onClick={()=>promiseAction(
-          dispatch,
-          searchAlbums(query), // FIXA
-          "SETSEARCHRESULTS") // FIXA
-          }>Search!
-        
-        </button>
+        <div class="searchright">
+          <button onClick={()=>promiseAction(
+            dispatch,
+            searchAlbums(query), // FIXA
+            "SETSEARCHRESULTS") // FIXA
+            }>Search!</button>
         </div>
 
 
-      <div id="search">
+        <div id="album">
 
-        { // Måste förhindra att man väljer videor
-            searchResults.filter(x=>(
-              x.images && 
-              !(x.images[0].animated) && 
-              !(x.images[0].height > x.images[0].width
-                )) ? true : false).map(x=><img 
-                src={x.images[0].link}
-                alt="wow"
-                width="100px"
-                onClick={()=>setPhotoURL(x.images[0].link)}
-                style={{cursor:"pointer"}}
-                ></img>)
-          }
+          { // Måste förhindra att man väljer videor
+              searchResults.filter(x=>(
+                x.images && 
+                !(x.images[0].animated) && 
+                !(x.images[0].height > x.images[0].width
+                  )) ? true : false).map(x=><img 
+                  src={x.images[0].link}
+                  alt="wow"
+                  width="100px"
+                  onClick={()=>setPhotoURL(x.images[0].link)}
+                  style={{cursor:"pointer"}}
+                  ></img>)
+            }
+        </div>
       </div>
     </div>
     </div>
