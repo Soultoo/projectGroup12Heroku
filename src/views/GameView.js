@@ -9,7 +9,7 @@ const GameView = ({props, nav}) => {
       <p>
         <button onClick = {()=>nav[1]()}>Continue</button>
       </p>
-      <Board/>
+      <Board imageURL={null}/>
       <p>
         <button onClick = {()=>null}>Reset round</button>
       </p>

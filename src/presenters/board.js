@@ -2,25 +2,25 @@ import React, { useState } from 'react';
 import { canSwap, winCheck, shuffleTilePositions, pictoSwap } from "./boardFunctions";
 import { Tile } from "../presenters/tiles";
 import '../board.css'; 
+import BoardView from '../views/boardView';
 
 // function to check if player has completed the game
 
 // Install react motion?
 
-export function Board(){
+export function Board({imageURL}){
     //const { rows, columns, images, boardSize,amountOfTiles } = props;
     const rows = 4;
     const columns =4;
     //const images;
+   const GRID_SIZE =4;
 
     const amountOfTiles=rows*columns;
-    const boardSize = 400*400;
+    const BOARD_SIZE = 320;
 
     const [tilesArray, setTilesArray] = useState([...Array(amountOfTiles).keys()]);
     const [gameStarted, setGameStarted] = useState(false);
-
-    //bottom right square is 'empty'
-    const empty_index = tilesArray.length - 1
+    console.log('is started:', gameStarted);
 
     const shuffleTiles = () => {
         const shuffledTiles = shuffleTilePositions(tilesArray, rows, columns);
@@ -35,10 +35,18 @@ export function Board(){
     // another state used to show finished image before started game
     const gameWon = winCheck(tilesArray);
     
-    const startGame = () => {
-        shuffleTiles();
-        setGameStarted(true);
-    };
+    const handleTileClick = (index) => {
+        pictoSwapTile(index)
+      }
+    
+      const handleShuffleClick = () => {
+        shuffleTiles()
+      }
+    
+      const handleStartClick = () => {
+        shuffleTiles()
+        setGameStarted(true)
+      }
   /*
     const handleEasyOption = () => {
         let columns = 3;
@@ -59,27 +67,13 @@ export function Board(){
         let col_row_number = 5;
         
         }*/
-     
-return (<div>
-    <div
-    className="board">
-    {tilesArray.map((tile, index) => (
-        <Tile
-        index={index}
-        tile={tile}
-        boardSize={boardSize}
-        onClick={pictoSwapTile()}
-        BOARD_SIZE={boardSize}
-        GRID_SIZE={rows}
-        TILE_COUNT={rows*columns}
-
-        ></Tile>
-    ))}
-    </div>
-    <div>{gameWon && gameStarted?"You solved pictoSwap!":"Keep trying!"}</div>
-        <button onClick={startGame()}>{(gameStarted && !gameWon)?"Start game!":"Shuffle again!"}</button>
-   
-</div>)    
+        const pieceWidth = Math.round(BOARD_SIZE / GRID_SIZE);
+        const pieceHeight = Math.round(BOARD_SIZE / GRID_SIZE);
+        const style = {
+          width: BOARD_SIZE,
+          height: BOARD_SIZE,
+        };
+return (<BoardView tilesArray={tilesArray} pieceWidth={pieceWidth} pieceHeight={pieceHeight} handleTileClick={handleTileClick} handleStartClick={handleStartClick} handleShuffleClick={handleShuffleClick} gameWon={gameWon} gameStarted={gameStarted}/>)    
 
 }
 

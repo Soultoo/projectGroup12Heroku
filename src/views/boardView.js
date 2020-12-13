@@ -1,30 +1,34 @@
 import { Tile } from "../presenters/tiles";
-import 'board.css'; 
-const boardView=({images, boardSize})=>{
-return <div>
-            <div
-            className="board">
-            {tiles.map((tile, index) => (
-                <Tile
-                index={index}
-                tile={tile}
-                boardSize={boardSize}
-                imageChoice={images[tile]}
-                onClick={pictoSwapTile()}
-                ></Tile>
-            ))}
-            </div>
-            <div>{gameWon && gameStarted?"You solved pictoSwap!":"Keep trying!"}</div>
-                <button onClick={startGame()}>{(gameStarted && !gameWon)?"Start game!":"Shuffle again!"}</button>
-            <div className="difficultyButton">
-                <button type="button" onClick={()=>handleEasyOption}>Easy</button>
-                <button type="button" onClick={()=>handleMediumOption}>Medium</button>
-                <button type="button" onClick={()=>handleHardOption}>Hard</button>
-                </div>
+import '../board.css'; 
+const BoardView=({imgURL, tilesArray, pieceWidth, pieceHeight, handleTileClick, handleStartClick, handleShuffleClick, gameWon, gameStarted, style})=>{
+return <div class="testBoard">
+        <ul style={style} className="board">
+        {tilesArray.map((tile, index) => (
+            <Tile
+            key={tile}
+            index={index}
+            tile={tile}
+            width={pieceWidth}
+            height={pieceHeight}
+            handleTileClick={handleTileClick()}
+
+            />
+        ))}
+        </ul>
+            <div>
+            {gameWon && gameStarted && <div>You solved pictoSwap!</div>}
+        {!gameStarted ?
+        (<button onClick={() => handleStartClick()}>Start game!</button>) :
+        (<button onClick={() => handleShuffleClick()}>Shuffle again!</button>)}
+        </div>
 </div>
 }
 /*
 Göra så att efter game started --> difficulty --> reshuffle. Lägga till timer
 */
  
-export default boardView;
+export default BoardView;
+
+
+/*            imgUrl={imgUrl}
+ */
