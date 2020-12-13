@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+/*import React, { useState, useEffect } from "react";
 import { searchAlbums, getImages } from "../api/ImgurSource";
 import { SearchFormView, SearchResultsView } from "../views/search/searchView";
 //import usePromise from "../api/usePromise";
 import promiseNoData from "../api/promiseNoData";
 import { useSelector, useDispatch } from 'react-redux';
-import { setSearchPromise, setImagePromise, setSearchQuery, usePromiseAction} from "../redux-model/actions";
+import { setSearchPromise, setImagePromise, setSearchQuery,} from "../redux-model/actions";
 import { Images } from "./images";
 
 export const Search= () => {
@@ -13,8 +13,7 @@ export const Search= () => {
     const searchReducer = useSelector(state => state.searchPromiseRed);
     const albumPromise = useSelector(state => state.imagePromise);
     
-    
-    console.log(data);
+
     return ( 
        <React.Fragment>
             <SearchFormView 

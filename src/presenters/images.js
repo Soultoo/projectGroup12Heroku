@@ -1,5 +1,5 @@
 import React from "react";
-import { Gallery } from 'react-grid-gallery';
+//import { Gallery } from 'react-grid-gallery';
 import usePromise from "../api/usePromise";
 import { getImages } from "../api/ImgurSource";
 import promiseNoData from "../api/promiseNoData";

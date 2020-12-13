@@ -21,6 +21,13 @@ export const turnOnGame = () => {
   return {type:"TURNONGAME"};
 }
 
+export const setPhotoURL = (URL) => {
+  return {
+    type:"SETPHOTOURL",
+    payload:URL
+  }
+}
+
 
 
 export const setNumberOfTiles = (nr) => {
@@ -53,26 +60,12 @@ export const setImagePromise = (promise) => {
   }
 }
 
-
-export const setChosenAlbum = (id) => {
-  return {
-    type:"SETCHOSENALBUM",
-    payload:id
-}
-
-}
-
-export const usePromiseAction=(dispatch, promise, actionType)=>{
+export const promiseAction = (dispatch, promise, actionType) => {
   if(!promise)
-       return {
-         type:actionType, 
-         payload:null};  // no ongoing promise
-
-  promise.then(data=>dispatch({type:actionType, payload:data}))
-          .catch(error=>dispatch({type:actionType, payload:error}));
-
-  return {
-    type:actionType, 
-    payload:{}}; 
+       return {type:actionType, payload:null};  // no ongoing promise
+  promise.then(data=>dispatch({payload:data.data, type:actionType}))
+          .catch(error=>dispatch({payload:error, type:actionType}));
+  return {type:actionType, payload:{}}; 
                               // ongoing promise, no data or error yet
 }
+

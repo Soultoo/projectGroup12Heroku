@@ -1,4 +1,5 @@
 
+import { act } from "react-dom/test-utils";
 import { combineReducers } from "redux";
 
 export const counter = (state = 0, action) => {
@@ -30,6 +31,25 @@ export const searchQueryRed = (state = "", action) => {
   return ((action.payload || action.payload === "") && action.type == "SETSEARCHQUERY") ? action.payload : state;
 }
 
+
+export const photoURLRed = (state="", action) => {
+  return ((action.payload || action.payload === "") && action.type == "SETPHOTOURL") ? action.payload : state;
+}
+
+
+
+// MÅSTE HA ERROR HANDLING!!!!
+export const searchResultsRed = (state=[], action) => {
+  if ((action.payload || action.payload === []) && action.type == "SETSEARCHRESULTS" 
+    && !(Object.keys(action.payload).length === 0 && action.payload.constructor === Object)) 
+    return action.payload;
+  
+  return [];
+}
+
+
+
+
 export const searchPromiseRed = (state = "", action)=>{
   return ((action.payload || action.payload === "") && action.type == "SETSEARCHPROMISE") ? action.payload : state;
 }
@@ -53,6 +73,11 @@ export const allReducers = combineReducers({
   gameRunRed:gameRunRed,
   numberOfTilesRed:numberOfTilesRed,
   searchQueryRed:searchQueryRed,
+
+  searchResultsRed:searchResultsRed,
+  photoURLRed:photoURLRed,
+
+
   searchPromise: searchPromiseRed,
   imagePromise: imagePromiseRed,
   chosenAlbumRed: chosenAlbumRed
