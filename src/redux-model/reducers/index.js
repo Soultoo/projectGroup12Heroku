@@ -30,21 +30,17 @@ export const searchQueryRed = (state = "", action) => {
   return ((action.payload || action.payload === "") && action.type == "SETSEARCHQUERY") ? action.payload : state;
 }
 
-export const boardSizeRed = (state = [{"posX":2, "posY":3},{"posX":4, "posY":1}], action) => {
-  let boardGrid = new Array()
-  if (action.payload && action.type == "SETBOARDSIZE") {  
-    for (let i= 1, k = action.payload; i <= k; i++){
-      for (let j= 1, k = action.payload; j <= k; j++) {
-        boardGrid = boardGrid.concat({"posX":j, "posY":i})
-      }
-    }
-  }
-  else {
-    return state;
-  } 
+export const searchPromiseRed = (state = "", action)=>{
+  return ((action.payload || action.payload === "") && action.type == "SETSEARCHPROMISE") ? action.payload : state;
+}
 
-  console.log(boardGrid)
-  return  boardGrid
+export const imagePromiseRed = (state = "", action) => {
+  return ((action.payload || action.payload === "") && action.type == "SETIMAGEPROMISE") ? action.payload : state;
+}
+
+export const chosenAlbumRed = (state = false, action) => {
+  return ((action.payload || action.payload === "") && action.type == "SETCHOSENALBUM") ? action.payload : state;
+
 }
 
 // Combined Reducer
@@ -54,6 +50,8 @@ export const allReducers = combineReducers({
   gameRunRed:gameRunRed,
   numberOfTilesRed:numberOfTilesRed,
   searchQueryRed:searchQueryRed,
-  boardSizeRed:boardSizeRed
+  searchPromise: searchPromiseRed,
+  imagePromise: imagePromiseRed,
+  chosenAlbumRed: chosenAlbumRed
 });
 // index, position, image, width, height, boardSize (rows, cols)

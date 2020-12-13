@@ -2,7 +2,7 @@ import Board from "../presenters/board";
 
 const GameView = ({props, nav}) => {
   return (
-    <div>
+    <div class="container">
       <p>
         <button onClick = {()=>nav[0]()}>Quit</button>
       </p>

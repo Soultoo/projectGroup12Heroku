@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;1,300;1,500;1,600&display=swap');
+
+
+body{  background-color: #B0E8E5;
+}
+
+.App {
+  width: 100vw;
+  padding: 2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: light;
+  color:#2C423F;
+}
+
+                                    /*  IF NEED GENERAL GRID STYLING
+.header{  
+  border:solid;
+}
+.main { 
+border:solid}
+.footer { 
+border: solid;}
+*/
+
+
+.container{
+  width: 500px;
+  background-color: #dcd0d0;
+  padding: 10px;
+  border-radius: 12px;
+  border:none;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 9px rgba(60,60, 60,0.19)
+}
+@media only screen and (min-width: 800px) { 
+
+  .container{  
+      flex-direction:row;
+      width: 60vw;
+      height: max-content;
+      display: block;
+      padding: 10px;
+  }
+}
+
+
+                                    /* BUTTONS */
+.button-container{
+  margin:auto;
+  width:max-content;
+}
+button  {
+ font-weight: 400;
+ margin: 1rem;
+ background-color:   #2C423F; 
+  border: none;
+  color: #C8E9A0;
+  padding: 15px 32px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 9px #999;
+}
+button:hover{
+  background-color:#C8E9A0 ;
+  color:  #2C423F;
+  box-shadow: 0 9px #999;
+  border:none;
+}
+
+button:active {
+  background-color: #C8E9A0;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+  border:none;
+}
+
+button:focus{outline:none;}
+button.back{
+  float:left;
+}
+
+button.start{
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom:20px ;
+}
+button.highscore{float:right}
+
+/*button.highscore{
+float:right;*/
+
+                                    /* HEADERS */
+h1 {
+  font-size: 60px;
+  font-weight: bold;
+  margin:auto;
+}
+h1.highscore{
+margin:auto;}
+
+h2 {
+  font-size: 45px;
+  font-weight: light;
+  font-style: italic;
+  
+}
+
+                                    /* HIGHSCORE */
+.highscore-container{
+  align-content: center;
+  padding:10px;
+}
+.hs-button{
+  display: block;
+}
+table.highscore{
+  margin:auto;
+  width: 60%;
+}
+th.highscore {font:lighter;}
+td.name, th.name {
+  text-align: left;
+}
+td.time, th.time{text-align: right;}
+
+th.highscore,td.highscore{
+  padding-bottom:0.5rem;
+  padding-right:1rem ;
+  
+}
+
+                                  /* SEARCH VIEW */
+.searchSelect {
+  width: 150px;
+  background-color:  #D0F1EF;
+  border: none;
+  border: solid 1px ;
+  border-color: #DCD0D0;
+
+}
+.searchOption{
+  width: 150px;
+}
+
+div.search{
+  margin: auto;
+}
+
+input.search{
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 15px 32px;
+  background-color:  #D0F1EF;
+  color: #2C423F;
+  border: solid 1px ;
+  border-color: #DCD0D0;
+  align-self: flex-start;
+}
+button.search{ 
+  height: 2 rem;
+}
+.searchheader { 
+  grid-area: searchheader;
+  margin:auto; }
+.searchmain { 
+  grid-area: searchmain; 
+  margin: auto;}
+.searchright { 
+  grid-area: searchright; 
+  margin: auto;}
+
+.searchgrid{
+  display: grid;
+  grid-template-areas:
+  'searchheader searchheader searchheader'
+  'searchmain searchmain searchright';
+}
+
+.searchgrid > div {
+  text-align: center;
+
+}
+
+                                    /*  ALBUM  */

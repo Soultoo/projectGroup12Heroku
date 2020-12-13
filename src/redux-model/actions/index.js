@@ -38,10 +38,26 @@ export const setSearchQuery = (query) => {
   }
 }
 
-export const setBoardSize = (nr) => {
+
+export const setSearchPromise = (promise) => {
   return {
-    type: "SETBOARDSIZE",
-    payload: nr
+    type: "SETSEARCHPROMISE",
+    payload: promise
   }
 }
-// index, position, image, width, height, boardSize (rows, cols)   
+
+export const setImagePromise = (promise) => {
+  return {
+    type: "SETIMAGEPROMISE",
+    payload: promise
+  }
+}
+
+
+export const setChosenAlbum = (id) => {
+  return {
+    type:"SETCHOSENALBUM",
+    payload:id
+}
+
+}

@@ -3,24 +3,14 @@ const HomeScreenView = ({props, nav}) => {
   const board = [...Array(boardSize).keys()]; 
   let counter = 1; 
   return (
-    <div>
-      <p>
-        <button onClick = {()=>nav[0]()}>Start a game!</button>
-      </p>
-      <p>
-        <button onClick = {()=>nav[1]()}>High Scores!</button>
-      </p>
-      <table>
-        <tbody>
-       
-          {board.map(x=><tr>
-            {board.map(x=><td>
-              
-              {counter++}
-              </td>)}
-            </tr>)}
-        </tbody>
-      </table>
+    <div class="container"> 
+      <div class="homescreen-container">
+      <h1>PictoSwap</h1>
+      <div class="button-container">
+        <button class="homescreenbutton" onClick = {()=>nav[0]()}>Start a game!</button>
+        <button class="homescreenbutton" onClick = {()=>nav[1]()}>High Scores!</button>
+        </div>
+      </div>
     </div>
   )
 }
