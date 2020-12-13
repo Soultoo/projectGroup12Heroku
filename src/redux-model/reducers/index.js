@@ -43,6 +43,23 @@ export const chosenAlbumRed = (state = false, action) => {
 
 }
 
+export const boardSizeRed = (state = [{"posX":2, "posY":3},{"posX":4, "posY":1}], action) => {
+  let boardGrid = new Array()
+  if (action.payload && action.type == "SETBOARDSIZE") {  
+    for (let i= 1, k = action.payload; i <= k; i++){
+      for (let j= 1, k = action.payload; j <= k; j++) {
+        boardGrid = boardGrid.concat({"posX":j, "posY":i})
+      }
+    }
+  }
+  else {
+    return state;
+  } 
+
+  console.log(boardGrid)
+  return  boardGrid
+}
+
 // Combined Reducer
 
 export const allReducers = combineReducers({
@@ -52,6 +69,7 @@ export const allReducers = combineReducers({
   searchQueryRed:searchQueryRed,
   searchPromise: searchPromiseRed,
   imagePromise: imagePromiseRed,
-  chosenAlbumRed: chosenAlbumRed
+  chosenAlbumRed: chosenAlbumRed,
+  boardSizeRed: boardSizeRed
 });
 // index, position, image, width, height, boardSize (rows, cols)

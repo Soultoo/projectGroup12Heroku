@@ -61,3 +61,10 @@ export const setChosenAlbum = (id) => {
 }
 
 }
+
+export const setBoardSize = (nr) => {
+  return {
+    type: "SETBOARDSIZE",
+    payload: nr
+  }
+}

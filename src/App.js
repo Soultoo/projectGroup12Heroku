@@ -69,33 +69,9 @@ function App() {
   const oldReturn = (
     <div className="App">
       <header className="App-header">
-  
-      </header>
-      <Show hash="#homescreen">
-        <HomeScreenContainer nav = {[setUpGameNav, highScoreNav]}/>
-      </Show>
-      <Show hash="#highscores">
-        <HighScoreContainer nav = {[homeScreenNav, setUpGameNav]}/>
-      </Show>
-      <Show hash="#setupgame">
-        <SetUpGameContainer nav = {[homeScreenNav, gameNav]}/>
-      </Show>
-      <Show hash="#game">
-        <GameContainer nav = {[setUpGameNav, highScoreNav]}/>
-      </Show>
-    </div>
-    );
-
-  return (
-    <div className="App">
-      <header className="App-header">
         Counter: {counter}
         <button onClick={()=>dispatch(actions.increment())}>
           +
-        </button>
-        <p> Current size: {boardSize[1].posX.toString()} </p>
-        <button onClick={()=>dispatch(actions.setBoardSize(5))}>
-          increase bong
         </button>
         <p> number of tiles: {numberOfTiles} </p>
         <p> Current query: {query} </p>

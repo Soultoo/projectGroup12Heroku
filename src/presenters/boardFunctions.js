@@ -56,7 +56,8 @@ export function getVisualPosition(row, col, width, height) {
 }
   
  // Function to check if the chosen tiles are possible to swap (aka next to each other on the board)
- export function swapTilesCheck(tilesArray, index, empty_index) {
+ 
+ /*export function swapTilesCheck(tilesArray, index, empty_index) {
   if (index < 0 || index >= tilesArray.length) {
     return false;
   }
@@ -76,6 +77,11 @@ export function getVisualPosition(row, col, width, height) {
   else {
       return false;
   }
+  }*/
+  export function canSwap(srcIndex, destIndex) {
+    const { row: srcRow, col: srcCol } = getMatrixPosition(srcIndex);
+    const { row: destRow, col: destCol } = getMatrixPosition(destIndex);
+    return Math.abs(srcRow - destRow) + Math.abs(srcCol - destCol) === 1;
   }
   
  // simple swapping function

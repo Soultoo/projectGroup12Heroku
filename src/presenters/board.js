@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { swapTilesCheck, winCheck, shuffleTilePositions, pictoSwap } from "./boardFunctions";
+import { canSwap, winCheck, shuffleTilePositions, pictoSwap } from "./boardFunctions";
 import { Tile } from "../presenters/tiles";
 
 // function to check if player has completed the game
@@ -27,11 +27,10 @@ export function Board(){
     };
  
     const pictoSwapTile = (index) => {
-        if(swapTilesCheck(tilesArray, index, tilesArray.indexOf(tilesArray.length-1)))
+        if(canSwap(tilesArray, index, tilesArray.indexOf(tilesArray.length-1)))
         pictoSwap(index);
     };
     
-    let [numberOfTiles, setNumberOfTiles] = useState([...Array(numberOfTiles)]); 
     // another state used to show finished image before started game
     const gameWon = winCheck(tilesArray);
     
