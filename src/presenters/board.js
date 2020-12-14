@@ -86,7 +86,7 @@ export function Board(){
         return [img.naturalHeight,false];
       }
     }
-    const gameWon = winCheck(tilesArray);
+    const gameWon = (counter === 2) //winCheck(tilesArray);
     
     
 return (<BoardView 
