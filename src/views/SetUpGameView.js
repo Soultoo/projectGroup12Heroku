@@ -32,8 +32,8 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
                   x.images && 
                   !(x.images[0].animated) && 
                   !(x.images[0].height > x.images[0].width
-                    )) &&
-                    !(x.images.height>800) ? true : false).map(x=><img 
+                    ) &&
+                    !(x.images[0].height>800)) ? true : false).map(x=><img 
                     src={x.images[0].link}
                     alt="wow"
                     width="100px"
