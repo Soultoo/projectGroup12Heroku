@@ -8,6 +8,8 @@ export const counter = (state = 0, action) => {
       return state + 1;
     case "DECREMENT":
       return state- 1;
+      case "RESET":
+        return state=0;
   }
   return state;
 };
@@ -63,6 +65,9 @@ export const chosenAlbumRed = (state = false, action) => {
 
 }
 
+export const highscoreRed =(state=0, action)=>{
+  return (action.payload && action.type == "SETHIGHSCORE") ? action.payload : state;
+}
 
 
 
@@ -80,6 +85,8 @@ export const allReducers = combineReducers({
 
   searchPromise: searchPromiseRed,
   imagePromise: imagePromiseRed,
-  chosenAlbumRed: chosenAlbumRed
+  chosenAlbumRed: chosenAlbumRed,
+
+  highscore:highscoreRed
 });
 // index, position, image, width, height, boardSize (rows, cols)

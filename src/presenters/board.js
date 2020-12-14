@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import { canSwap, winCheck, shuffleTilePositions, pictoSwap } from "./boardFunctions";
 import '../board.css'; 
 import BoardView from '../views/boardView';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { increment, setHighScore } from '../redux-model/actions';
+import firestore from "../js/firebase" // Dessa 2 behövs alltså för att utnyttja databasen (denna och nedan)
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 export function Board(){
     const imageURL = useSelector(state=>state.photoURLRed);
+    const dispatch = useDispatch();
+    const counter= useSelector(state=>state.counter)
     
     const rows = 4;
     const columns = 4;
@@ -13,7 +18,7 @@ export function Board(){
     const TILE_COUNT = GRID_SIZE*GRID_SIZE;
     
     const amountOfTiles=rows*columns;
-    const BOARD_SIZE = 250;
+    const BOARD_SIZE = 500;
 
     const [tilesArray, setTilesArray] = useState([...Array(amountOfTiles).keys()]);
     const [gameStarted, setGameStarted] = useState(false);
@@ -33,7 +38,8 @@ export function Board(){
     }
 
     const handleTileClick = (index) => {
-      pictoSwapTile(index)
+      dispatch(increment());
+      pictoSwapTile(index);
     }
     
     const handleShuffleClick = () => {
@@ -44,6 +50,13 @@ export function Board(){
       shuffleTiles()
       setGameStarted(true)
     }
+
+    const handleAddToHighScore=(name)=>{
+      dispatch(setHighScore({counter,name}));
+
+      // ADD TO SCORE DATABASE SOMEHOW
+    }
+
     const pieceWidth = Math.round(BOARD_SIZE / GRID_SIZE);
     const pieceHeight = Math.round(BOARD_SIZE / GRID_SIZE);
     const style = {
@@ -75,6 +88,7 @@ export function Board(){
     }
     const gameWon = winCheck(tilesArray);
     
+    
 return (<BoardView 
   imgURL ={imageURL} 
   tilesArray={tilesArray} 
@@ -90,8 +104,9 @@ return (<BoardView
   boxGrid = {GRID_SIZE} 
   BOARD_SIZE={BOARD_SIZE} 
   TILE_COUNT={TILE_COUNT} 
-  style = {style}/>)    
-
+  style = {style}
+  handleAddToHighScore = {handleAddToHighScore}
+  />)    
 }
 
 export default Board;

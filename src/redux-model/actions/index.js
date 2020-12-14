@@ -11,6 +11,12 @@ export const decrement = () => {
   }
 }
 
+export const resetGame =()=>{
+  return{
+    type:"RESET"
+  }
+}
+
 
 
 export const turnOffGame = () => {
@@ -67,5 +73,12 @@ export const promiseAction = (dispatch, promise, actionType) => {
           .catch(error=>dispatch({payload:error, type:actionType}));
   return {type:actionType, payload:{}}; 
                               // ongoing promise, no data or error yet
+}
+
+export const setHighScore = (nr)=>{
+return{
+  type: "SETHIGHSCORE",
+  payload: nr
+}
 }
 
