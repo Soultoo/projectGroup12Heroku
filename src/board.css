@@ -1,19 +1,27 @@
-.testBoard{
+.testBoard {
     display: grid;
     place-items: center;
-  height: 100vh;
-}
+    height: 100vh;
+  }
 
-.tile {position: absolute;
+  .tile {
+    position: relative;
+    width: 100%;
     list-style: none;
     background: #ec6f66;
     display: grid;
     place-items: center;
-    font-size: 20px;
-    
+    font-size: 20px;  
+
 }
 
 .board {
     position: relative;
+    display: grid;
     padding: 0;
+    grid-gap: px;
+    grid-template-rows: repeat(4, 100px);
+    grid-template-columns: repeat(4, 100px);
+    
+    
 }

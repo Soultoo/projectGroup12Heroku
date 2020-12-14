@@ -12,9 +12,12 @@ export function solvableCheck(tilesArray) {
 
 // Function to check if gameboard is solved
 export function winCheck(tilesArray){
-  for(let i = 0; i<tilesArray.length;i++){
-      return (tilesArray[i] === i)?true:false;
+  for (let i = 0, l = tilesArray.length; i < l; i++) {
+    if (tilesArray[i] !== i) {
+      return false;
+    }
   }
+  return true;
 }
 
 // Get the linear index from a row/col pair.
@@ -24,12 +27,11 @@ export function getIndex(row, col) {
 }
 
 // Get the row/col pair from a linear index.
-export function getMatrixPosition(index, row) {
-  const GRID_SIZE = row;
-  return {
-    row: Math.floor(index / GRID_SIZE),
-    col: index % GRID_SIZE,
-  };
+export function getMatrixPosition(index, GRID_SIZE) {
+    const row = Math.floor(index / GRID_SIZE);
+    const col = index % GRID_SIZE;
+    console.log(row, col, "yay")
+  return {row: row, col: col};
 }
 export function getVisualPosition(row, col, width, height) {
   return {
@@ -55,39 +57,18 @@ export function getVisualPosition(row, col, width, height) {
     : shuffleTilePositions(shuffledTiles);
 }
   
- // Function to check if the chosen tiles are possible to swap (aka next to each other on the board)
- 
- /*export function swapTilesCheck(tilesArray, index, empty_index) {
-  if (index < 0 || index >= tilesArray.length) {
-    return false;
-  }
-   let oldPositionRow = tilesArray[index][0];
-  let newPositionRow = tilesArray[empty_index][0];
-  let oldPositionCol = tilesArray[index][1];
-  let newPositionCol = tilesArray[empty_index][1];
-  
-  // if the tiles are in the same row, make sure they're only 1 step from each other column wise, using absoloute value
-  if (oldPositionRow === newPositionRow){
-    return Math.abs(oldPositionCol - newPositionCol === 1);
-  }
-  // else if the tiles are in the same column, make sure they're only 1 step from each other row wise, using absolute value
-  else if (oldPositionCol === newPositionCol){
-      return Math.abs(oldPositionRow-newPositionRow === 1);
-  }
-  else {
-      return false;
-  }
-  }*/
-  export function canSwap(srcIndex, destIndex) {
-    const { row: srcRow, col: srcCol } = getMatrixPosition(srcIndex);
-    const { row: destRow, col: destCol } = getMatrixPosition(destIndex);
+  export function canSwap(srcIndex, destIndex, GRID_SIZE) {
+    console.log(srcIndex, "index")
+    const {row: srcRow, col: srcCol} = getMatrixPosition(srcIndex, GRID_SIZE);
+    console.log(srcRow, srcCol)
+    const {row: destRow, col: destCol} = getMatrixPosition(destIndex, GRID_SIZE);
+    console.log(Math.abs(srcRow - destRow) + Math.abs(srcCol - destCol) === 1)
     return Math.abs(srcRow - destRow) + Math.abs(srcCol - destCol) === 1;
   }
   
  // simple swapping function
- export function pictoSwap(tilesArray, oldPosition, newPosition) {
-  const tiles_copy = [...tilesArray];
-  tiles_copy[newPosition] = tiles_copy[oldPosition];
-  tiles_copy[oldPosition] = tiles_copy[newPosition];
-  return tiles_copy;
- }
+  export function pictoSwap(tiles, src, dest) {
+  const tilesResult = [...tiles];
+  [tilesResult[src], tilesResult[dest]] = [tilesResult[dest], tilesResult[src]];
+  return tilesResult;
+}

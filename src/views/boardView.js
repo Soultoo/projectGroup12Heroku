@@ -10,7 +10,7 @@ return <div class="testBoard">
             tile={tile}
             width={pieceWidth}
             height={pieceHeight}
-            handleTileClick={handleTileClick()}
+            handleTileClick={handleTileClick}
 
             />
         ))}
