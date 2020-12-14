@@ -69,3 +69,9 @@ export const promiseAction = (dispatch, promise, actionType) => {
                               // ongoing promise, no data or error yet
 }
 
+export const setDifficulty = (nr) => {
+  return {
+    type: "SETDIFFICULTY",
+    payload: nr
+  }
+}

@@ -13,7 +13,8 @@ import { searchAlbums } from "../api/ImgurSource"
 
 // actions:
 
-import { setSearchQuery, promiseAction, setPhotoURL } from "../redux-model/actions"
+import { setSearchQuery, promiseAction, setPhotoURL, setDifficulty } from "../redux-model/actions"
+import { difficultyRed } from "../redux-model/reducers";
 
 // förbereda props
 const SetUpGameContainer = ({nav}) => {
@@ -24,7 +25,8 @@ const SetUpGameContainer = ({nav}) => {
     return {
       query: state.searchQueryRed,
       searchResults: state.searchResultsRed,
-      photoURL:state.photoURLRed
+      photoURL:state.photoURLRed,
+      difficulty:state.difficultyRed
     }
   }
   
@@ -32,7 +34,8 @@ const SetUpGameContainer = ({nav}) => {
     return {
       setSearchQuery: (q) => dispatch(setSearchQuery(q)),
       promiseAction: (dispatch,promise,actionName) => dispatch(promiseAction(dispatch,promise,actionName)),
-      setPhotoURL: (URL) => dispatch(setPhotoURL(URL))
+      setPhotoURL: (URL) => dispatch(setPhotoURL(URL)),
+      setDifficulty: (nr) => dispatch(setDifficulty(nr))
     }
   }
 
@@ -41,7 +44,7 @@ const SetUpGameContainer = ({nav}) => {
     mapDispatchToProps
   )(SetUpGameView);
   
-  return <Connected dispatch={dispatch} searchAlbums={searchAlbums} nav={nav}/>;
+  return <Connected key="setupGameView" dispatch={dispatch} searchAlbums={searchAlbums} nav={nav}/>;
 }
 
 
