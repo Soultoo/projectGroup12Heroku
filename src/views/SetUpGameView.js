@@ -1,8 +1,9 @@
+import { difficultyRed, photoURLRed } from "../redux-model/reducers";
 
 
 
 
-const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSearchQuery, promiseAction, setPhotoURL}) => {
+const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSearchQuery, promiseAction, setPhotoURL, setDifficulty, difficulty, photoURL}) => {
   let q = "";
 
   return (
@@ -12,17 +13,24 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
         <div class="header">
           <h1 class="setupgame">PictoSwap</h1>
         </div>
-      
+      <div class="uglysolution">
+        <span>
+          Chosen difficulty: {difficulty}
+        </span>
+        <span>
+          {(photoURL)? "You have chosen an image": ""}
+        </span>
+      </div>
         <div class="search searchgrid">
           <div class="searchmain">
             <form >
-              <input class="search" onBlur={function(event) {setSearchQuery(event.target.value);}} placeholder={"Example: Cats"}>
+              <input key="searchImages" class="search" onBlur={(event)=>{setSearchQuery(event.target.value)}} placeholder={query}>
                 </input>
             </form>
           </div>
 
           <div class="searchright">
-            <button onClick={()=>promiseAction(
+            <button key="triggerSearch" onClick={()=>promiseAction(
               dispatch,
               searchAlbums(query), // FIXA
               "SETSEARCHRESULTS") // FIXA
@@ -30,7 +38,7 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
           </div>
 
 
-          <div class="album searchbulk">
+          <div key="fancyAlbum" class="album searchbulk">
 
             { // Måste förhindra att man väljer videor
                 searchResults.filter(x=>(
@@ -49,7 +57,14 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
           
         </div>
         <div class="footer">
-          
+          <form key="difficultyChoices" class="difficulty" onChange={(event)=>setDifficulty(event.target.value)}>
+            <label for="easy">Easy (4x4)</label>
+            <input type="radio" id="easy" value="4" ></input>
+            <label for="medium">Medium (5x5)</label>
+            <input type="radio" id="medium" value="5"></input>
+            <label for="hard">Hard (6x6)</label>
+            <input type="radio" id="hard" value="6"></input>
+                    </form>
           <button class="start" onClick = {()=>nav[1]()}>Start game!</button>
         
         </div>
