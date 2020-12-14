@@ -9,8 +9,8 @@ export const counter = (state = 0, action) => {
       return state + 1;
     case "DECREMENT":
       return state- 1;
-      case "RESET":
-        return state=0;
+      case "RESETGAME":
+        return 0;
   }
   return state;
 };
@@ -22,6 +22,8 @@ export const gameRunRed = (state = false, action) => {
       return false;
     case "TURNONGAME":
       return true;
+    case "RESETGAME":
+      return false;
   }
   return state;
 }

@@ -94,10 +94,7 @@ function App() {
 
   const [photoURL, setPhotoURL] = useState("")
 // Hittar bildtyp i albumet.images[indexFörArrayen].type, ska nog exkludera annat än bilder
-  ImgurSource.searchAlbums("dog").then(x=>{
-    setPhotoURL(x.data[1].images[0].link)
-
-  });
+  
 
 
   const delay = (ms) => {

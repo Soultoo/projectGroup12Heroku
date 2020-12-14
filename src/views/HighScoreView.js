@@ -1,4 +1,4 @@
-const HighScoreView = ({props, nav, scores, addScore}) => {
+const HighScoreView = ({props, nav, scores}) => {
   return (
     <div>
        <p>
@@ -32,9 +32,6 @@ const HighScoreView = ({props, nav, scores, addScore}) => {
                 </tbody>
               </table> {// Här ska stuff vara sen}
               }
-              <div class="hs-button">
-                <button class="addscore" onClick = {()=>addScore()}>Add Score</button>
-              </div>
           </div>
         </div>
       </div>

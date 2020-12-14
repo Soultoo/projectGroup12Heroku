@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { canSwap, winCheck, shuffleTilePositions, pictoSwap } from "./boardFunctions";
 import '../board.css'; 
 import BoardView from '../views/boardView';
@@ -7,10 +7,18 @@ import { increment, setHighScore } from '../redux-model/actions';
 import firestore from "../js/firebase" // Dessa 2 behövs alltså för att utnyttja databasen (denna och nedan)
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
+
+
+
 export function Board(){
+    
+
+    
+
     const imageURL = useSelector(state=>state.photoURLRed);
     const dispatch = useDispatch();
     const counter= useSelector(state=>state.counter)
+
     
     const rows = 4;
     const columns = 4;
@@ -24,11 +32,26 @@ export function Board(){
     const [gameStarted, setGameStarted] = useState(false);
     console.log('is started:', gameStarted);
 
+
+    React.useEffect(function() { 
+      const removeThisLater = () => {
+        setGameStarted(true)
+        dispatch({type:"RESETGAME"})
+      };
+      
+      window.addEventListener("hashchange", removeThisLater);
+          
+      return ()=>window.removeEventListener("hashchange", ()=>removeThisLater());
+      }, 
+  []); 
+
     const shuffleTiles = () => {
         const shuffledTiles = shuffleTilePositions(tilesArray, rows, columns);
         setTilesArray(shuffledTiles);
 
     };
+
+    
  
     const pictoSwapTile = (index) => {
       if (canSwap(index, tilesArray.indexOf(tilesArray.length - 1), GRID_SIZE)) {
@@ -38,24 +61,31 @@ export function Board(){
     }
 
     const handleTileClick = (index) => {
-      dispatch(increment());
-      pictoSwapTile(index);
+      if (gameStarted){
+        dispatch(increment());
+        pictoSwapTile(index);
+      }
     }
     
-    const handleShuffleClick = () => {
+    const handleRestartClick = () => {
+      dispatch({type:"RESETGAME"})
       shuffleTiles()
     }
     
     const handleStartClick = () => {
       shuffleTiles()
       setGameStarted(true)
+      dispatch({type:"RESETGAME"})
     }
 
-    const handleAddToHighScore=(name)=>{
-      dispatch(setHighScore({counter,name}));
+    const scoreStoreRef = firestore.collection("highScores");
+
+    const handleAddToHighScore=(name, counter)=>{
+      scoreStoreRef.add({name:name, score:counter});
 
       // ADD TO SCORE DATABASE SOMEHOW
     }
+
 
     const pieceWidth = Math.round(BOARD_SIZE / GRID_SIZE);
     const pieceHeight = Math.round(BOARD_SIZE / GRID_SIZE);
@@ -86,7 +116,7 @@ export function Board(){
         return [img.naturalHeight,false];
       }
     }
-    const gameWon = (counter === 2) //winCheck(tilesArray);
+    const gameWon = winCheck(tilesArray);
     
     
 return (<BoardView 
@@ -96,7 +126,7 @@ return (<BoardView
   pieceHeight={pieceHeight} 
   handleTileClick={(index)=>handleTileClick(index)} 
   handleStartClick={handleStartClick} 
-  handleShuffleClick={handleShuffleClick} 
+  handleRestartClick={handleRestartClick} 
   gameWon={gameWon} 
   gameStarted={gameStarted} 
   coordArray = {coordinates(rows)} 
@@ -106,6 +136,7 @@ return (<BoardView
   TILE_COUNT={TILE_COUNT} 
   style = {style}
   handleAddToHighScore = {handleAddToHighScore}
+  counter={counter}
   />)    
 }
 
