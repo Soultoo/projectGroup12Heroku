@@ -32,6 +32,12 @@ export function getMatrixPosition(index, GRID_SIZE) {
     const col = index % GRID_SIZE;
   return {row: row, col: col};
 }
+export function getMatrixPosition2({posX, posY}, GRID_SIZE) {
+
+    const row = Math.floor(posX / GRID_SIZE);
+    const col = posY % GRID_SIZE;
+  return {row: row, col: col};
+}
 export function getVisualPosition(row, col, width, height) {
   return {
     x: col * width,

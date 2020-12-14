@@ -63,9 +63,6 @@ export function Board({imageURL}){
         
     function getMeta(url){
       let img = new Image();
-      img.addEventListener("load", function(){
-        alert(this.naturalWidth + " " + this.naturalHeight)
-      })
       img.src = url;
       if (img.naturalWidth < img.naturalHeight){
 
@@ -84,8 +81,8 @@ return (<BoardView
   pieceWidth={pieceWidth} 
   pieceHeight={pieceHeight} 
   handleTileClick={(index)=>handleTileClick(index)} 
-  handleStartClick={()=>handleStartClick} 
-  handleShuffleClick={()=>handleShuffleClick} 
+  handleStartClick={handleStartClick} 
+  handleShuffleClick={handleShuffleClick} 
   gameWon={gameWon} 
   gameStarted={gameStarted} 
   coordArray = {coordinates(rows)} 
