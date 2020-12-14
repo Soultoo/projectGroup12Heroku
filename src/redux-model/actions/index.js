@@ -11,12 +11,6 @@ export const decrement = () => {
   }
 }
 
-export const resetGame =()=>{
-  return{
-    type:"RESET"
-  }
-}
-
 
 
 export const turnOffGame = () => {
@@ -96,6 +90,15 @@ export const setImagePromise = (promise) => {
     payload: promise
   }
 }
+
+export const resetGame = () => {
+  return {
+    type:"RESETGAME"
+  }
+}
+
+
+
 
 export const promiseAction = (dispatch, promise, actionType) => {
   if(!promise)

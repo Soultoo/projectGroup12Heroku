@@ -16,12 +16,12 @@ import HighScoreView from "../views/HighScoreView";
 
 const HighScoreContainer = ({nav}) => {
 
-  const addScore = ()=>scoreStoreRef.add({name:"cool", score:2});
+  
 
   const scoreStoreRef = firestore.collection("highScores");
-  const query = scoreStoreRef.orderBy("score", "desc").limit(15);
+  const query = scoreStoreRef.orderBy("score").limit(100);
   const [scores] = useCollectionData(query,{idField:"id"});
-  return HighScoreView({nav, scores, addScore})
+  return HighScoreView({nav, scores})
 }
 
 export default HighScoreContainer;

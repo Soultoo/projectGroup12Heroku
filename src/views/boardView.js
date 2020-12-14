@@ -6,7 +6,7 @@ const BoardView=({imgURL,
     pieceHeight, 
     handleTileClick, 
     handleStartClick, 
-    handleShuffleClick, 
+    handleRestartClick, 
     gameWon, 
     gameStarted, 
     coordArray, 
@@ -14,19 +14,21 @@ const BoardView=({imgURL,
     boxGrid, 
     TILE_COUNT, 
     style,
-    handleAddToHighScore})=>{
-        let name;
+    handleAddToHighScore,
+    counter
+    })=>{
+        let name = "No name";
 return <div class="testBoard">
      <div>
             <div>
             {gameWon && gameStarted && <div>
-                <span>You solved pictoSwap! :) </span>
+                <span>Well done! Add a name for highscore :) </span>
                 <input class="gameinput" onChange={(event)=>name=event.target.value} />
-                <button onClick={()=>handleAddToHighScore(name)}>Add your score to the highscore?</button>
+                <button onClick={()=>handleAddToHighScore(name, counter)}>Add highscore</button>
             </div>}
             {!gameStarted ?
             (<button onClick={() => handleStartClick()}>Start game!</button>) :
-            (<button onClick={() => handleShuffleClick()}>Shuffle again!</button>)}
+            (<button onClick={() => handleRestartClick()}>Restart</button>)}
         </div>
         </div>
     <div class="gamecontainer">
