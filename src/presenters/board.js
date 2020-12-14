@@ -10,11 +10,8 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 
 
 
-export function Board(){
+export function Board({nav}){
     
-
-    
-
     const imageURL = useSelector(state=>state.photoURLRed);
     const dispatch = useDispatch();
     const counter= useSelector(state=>state.counter)
@@ -82,6 +79,7 @@ export function Board(){
 
     const handleAddToHighScore=(name, counter)=>{
       scoreStoreRef.add({name:name, score:counter});
+      nav();
 
       // ADD TO SCORE DATABASE SOMEHOW
     }

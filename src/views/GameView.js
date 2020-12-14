@@ -11,7 +11,7 @@ const GameView = ({props, nav}) => {
                     <button onClick = {()=>nav[1]()}>High Scores</button>                  
               </div>
               <div class="game">
-                <Board/>
+                <Board nav={()=>nav[1]()}/>
               </div>
             </div>
     </div>
