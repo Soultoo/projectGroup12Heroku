@@ -1,9 +1,9 @@
 
-
+import SearchBarContainer from "../presenters/SearchBarContainer"
 
 
 const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSearchQuery, promiseAction, setPhotoURL}) => {
-  let q = "";
+
 
   return (
     <div>
@@ -15,10 +15,7 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
       
         <div class="search searchgrid">
           <div class="searchmain">
-            <form >
-              <input class="search" onBlur={function(event) {setSearchQuery(event.target.value);}} placeholder={"Example: Cats"}>
-                </input>
-            </form>
+            <SearchBarContainer/>
           </div>
 
           <div class="searchright">

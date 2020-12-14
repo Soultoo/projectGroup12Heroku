@@ -38,6 +38,37 @@ export const setNumberOfTiles = (nr) => {
 }
 
 
+
+export const stopTimer = () => {
+  return {
+    type:"STOPTIMER"
+  }
+}
+
+export const startTimer = () => {
+  return {
+    type:"STARTTIMER"
+  }
+}
+
+
+
+export const increment1Sec = () => {
+  return {
+    type:"INCREMENT1SEC"
+  }
+}
+
+export const getWidth = (str) => {
+  return {
+    type:"GETWIDTH",
+    payload:str
+  }
+}
+
+
+
+
 export const setSearchQuery = (query) => {
   return {
     type: "SETSEARCHQUERY",

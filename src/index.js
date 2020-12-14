@@ -19,7 +19,7 @@ import { allReducers } from "./redux-model/reducers";
 
 
 
-let store = createStore(
+export let store = createStore(
   allReducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

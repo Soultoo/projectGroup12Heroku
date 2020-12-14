@@ -1,6 +1,7 @@
 
 import { act } from "react-dom/test-utils";
 import { combineReducers } from "redux";
+import { getWidth } from "../actions";
 
 export const counter = (state = 0, action) => {
   switch (action.type) {
@@ -49,6 +50,38 @@ export const searchResultsRed = (state=[], action) => {
 
 
 
+export const stopWatchRunningRed = (state = false, action) => {
+  switch(action.type) {
+    case "STARTTIMER":
+      return true;
+    case "STOPTIMER":
+      return false;
+  }
+  return state;
+}
+
+export const stopWatchTimeRed = (state={m:0, s:0}, action) => {
+  if (action.type == "INCREMENT1SEC") {
+    const minutes = state.m;
+    const seconds = state.s;
+    return (seconds === 59) ? {m:minutes+1, s:0} : {m:minutes, s:seconds+1} ;
+  }
+  else if ((action.payload) && action.type == "RESETSTOPWATCH")
+    return {m:0, s:0};
+  
+  return {m:0, s:0};
+}
+
+
+
+
+export const widthReducer = (state="", action) => {
+  if (action.payload && action.type == "GETWIDTH") {
+    return action.payload;
+  }
+  return "";
+}
+
 
 export const searchPromiseRed = (state = "", action)=>{
   return ((action.payload || action.payload === "") && action.type == "SETSEARCHPROMISE") ? action.payload : state;
@@ -73,6 +106,12 @@ export const allReducers = combineReducers({
   gameRunRed:gameRunRed,
   numberOfTilesRed:numberOfTilesRed,
   searchQueryRed:searchQueryRed,
+
+  widthReducer:widthReducer,
+
+  stopWatchRunningRed:stopWatchRunningRed,
+
+  stopWatchTimeRed:stopWatchTimeRed,
 
   searchResultsRed:searchResultsRed,
   photoURLRed:photoURLRed,

@@ -14,6 +14,9 @@ import * as actions from "./redux-model/actions";
 
 import { ReactReduxContext } from 'react-redux';
   
+
+import { store } from "./index"
+
 import { createStore } from "redux";
 
 // Containers / presenters
@@ -61,46 +64,6 @@ const firestore = firebase.firestore();
 
 
 
-
-
-
-function testDB() {
-  const collTest = firestore.collection("highScores").doc("testId");
-  collTest.get()
-    .then(doc => {
-
-      const data = doc.data();
-
-    }
-
-    )
-  
-}
-
-function InitialScoreThing() {
-  // får göra requests upp till 15 stycken
-  // ska alltså
-  const scoreStoreRef = firestore.collection("highScores");
-  const query = scoreStoreRef.orderBy("score", "desc").limit(15);
-  const [scores] = useCollectionData(query,{idField:"id"})
-  return (
-    <div> 
-      <table>
-        {scores && scores.map(scoreElement => (
-          <tr key={scoreElement.name}>
-            <td>{scoreElement.name}  </td> <td>{scoreElement.score}</td>
-          </tr>
-        )
-        )}
-      </table>
-
-      <button onClick = {()=>scoreStoreRef.add({name:"cool", score:2})}>:)</button>
-    </div>
-  );
-
-}
-
-
 // Navigation
 
 const setUpGameNav=()=> window.location.hash="setupgame";
@@ -127,71 +90,59 @@ window.addEventListener("hashchange", ()=>defaultRoute());
 
 function App() {
 
+  
+
   const [photoURL, setPhotoURL] = useState("")
 // Hittar bildtyp i albumet.images[indexFörArrayen].type, ska nog exkludera annat än bilder
   ImgurSource.searchAlbums("dog").then(x=>{
-    console.log(x.data[1])
     setPhotoURL(x.data[1].images[0].link)
 
   });
 
 
-
+  const delay = (ms) => {
+    return new Promise(resolve => setTimeout(resolve,ms));
+  }
 
   const counter = useSelector(state=> state.counter);
   const numberOfTiles = useSelector(state=> state.numberOfTilesRed);
   const query = useSelector(state=> state.searchQueryRed);
   const searchResults = useSelector(state=> state.searchResultsRed);
+  const width = useSelector(state=> state.widthReducer);
+  const stopWatchRunning = useSelector(state=>state.stopWatchRunningRed)
 
-  console.log(counter);
+  const time = useSelector(state=> state.stopWatchTimeRed)
+
   const dispatch = useDispatch();
 
-  testDB();
+  /*window.onload = function() {
+    const secondTimer = setInterval(()=>{
 
-  const oldReturn = (
-    <div className="App">
-      <header className="App-header">
-        Counter: {counter}
-        <button onClick={()=>dispatch(actions.increment())}>
-          +
-        </button>
+      (console.log("1s"));
+      (console.log(stopWatchRunning));
+      if (stopWatchRunning) dispatch(actions.increment1Sec())
+    }, 1000)
+  }*/
 
-        <div>
-          <button onClick={()=>dispatch(actions.promiseAction(
-            dispatch, 
-            ImgurSource.searchAlbums(query), 
-            "SETSEARCHRESULTS")
-            )}>Search!</button>
-            <script>{console.log(searchResults.filter(x=>(x.images) ? true : false).map(x=>x.images[0].link))}</script>
-          api-sak 2: {
-            searchResults.filter(x=>(x.images) ? true : false).map(x=><img 
-              src={x.images[0].link}
-              alt="wow"
-              width="100px"
-              ></img>)
-          }</div>
+    function getWidth(dispatch)  {
+      const url = "https://i.pinimg.com/564x/c3/2c/39/c32c392ba8920f0508c1309e86aba437.jpg"
+      let img = new Image()
+      img.addEventListener("load", function(){
+        dispatch(actions.getWidth(this.naturalWidth.toString()))
+      })
+      img.src = url
+    }
 
-        <div> api-sak: <img src={photoURL} height="100px" width="100px"></img></div>
-        <p> number of tiles: {numberOfTiles} </p>
-        <p> Current query: {query} </p>
-        <p> Search: 
-          <input onChange={(event)=> {dispatch(actions.setSearchQuery(event.target.value));
-          }}>
-          </input>
-        </p>
-      </header>
-      <div>
-        <InitialScoreThing/>
-      </div>
-      <CounterContainer/>
-    </div>
-  );
+
+  let clockRunning = false;
+
+  
 
   return (
-    <div className="App">
+    <div className="App" onLoad={null}>
       <header className="App-header">
-  
       </header>
+      {time.m} : {time.s}
       <Show hash="#homescreen">
         <HomeScreenContainer nav = {[setUpGameNav, highScoreNav]}/>
       </Show>
@@ -204,6 +155,7 @@ function App() {
       <Show hash="#game">
         <GameContainer nav = {[setUpGameNav, highScoreNav]}/>
       </Show>
+      
     </div>
     )
 
