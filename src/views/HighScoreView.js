@@ -9,7 +9,7 @@ const HighScoreView = ({props, nav, scores}) => {
       <h1 class="highscore">PictoSwap</h1>
         <div class="highscore-container">
           <div class="highscore hs-button" >
-            <button class="highscore" onClick = {()=>nav[1]()}>Continue</button>
+            <button class="highscore" onClick = {()=>nav[1]()}>New Game!</button>
           </div>
           
               <div class="highscore-header">
