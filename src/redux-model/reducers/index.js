@@ -63,9 +63,6 @@ export const chosenAlbumRed = (state = false, action) => {
 
 }
 
-export const difficultyRed = (state = 4, action) => {
-  return (action.payload && action.type == "SETDIFFICULTY") ? action.payload : state;
-}
 
 
 
@@ -83,8 +80,6 @@ export const allReducers = combineReducers({
 
   searchPromise: searchPromiseRed,
   imagePromise: imagePromiseRed,
-  chosenAlbumRed: chosenAlbumRed,
-
-  difficulty: difficultyRed
+  chosenAlbumRed: chosenAlbumRed
 });
 // index, position, image, width, height, boardSize (rows, cols)

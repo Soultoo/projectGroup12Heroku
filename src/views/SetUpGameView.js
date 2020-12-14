@@ -1,9 +1,5 @@
-import { difficultyRed, photoURLRed } from "../redux-model/reducers";
 
-
-
-
-const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSearchQuery, promiseAction, setPhotoURL, setDifficulty, difficulty, photoURL}) => {
+const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSearchQuery, promiseAction, setPhotoURL, photoURL}) => {
   let q = "";
 
   return (
@@ -13,14 +9,7 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
         <div class="header">
           <h1 class="setupgame">PictoSwap</h1>
         </div>
-      <div class="uglysolution">
-        <span>
-          Chosen difficulty: {difficulty}
-        </span>
-        <span>
-          {(photoURL)? "You have chosen an image": ""}
-        </span>
-      </div>
+      
         <div class="search searchgrid">
           <div class="searchmain">
             <form >
@@ -37,7 +26,7 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
               }>Search!</button>
           </div>
 
-
+            
           <div key="fancyAlbum" class="album searchbulk">
 
             { // Måste förhindra att man väljer videor
@@ -57,14 +46,11 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
           
         </div>
         <div class="footer">
-          <form key="difficultyChoices" class="difficulty" onChange={(event)=>setDifficulty(event.target.value)}>
-            <label for="easy">Easy (4x4)</label>
-            <input type="radio" id="easy" value="4" ></input>
-            <label for="medium">Medium (5x5)</label>
-            <input type="radio" id="medium" value="5"></input>
-            <label for="hard">Hard (6x6)</label>
-            <input type="radio" id="hard" value="6"></input>
-                    </form>
+        <div class="uglysolution">
+        <span>
+          {(photoURL)? <span>You have chosen: {<img src={photoURL} width="100px" class="album" />}</span>:""}
+        </span>
+      </div>
           <button class="start" onClick = {()=>nav[1]()}>Start game!</button>
         
         </div>
@@ -74,3 +60,15 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
 }
 
 export default SetUpGameView;
+
+/*
+<form key="difficultyChoices" class="difficulty" onChange={(event)=>setDifficulty(event.target.value)}>
+            <label for="easy">Easy (4x4)</label>
+            <input type="radio" id="easy" value="4" ></input>
+            <label for="medium">Medium (5x5)</label>
+            <input type="radio" id="medium" value="5"></input>
+            <label for="hard">Hard (6x6)</label>
+            <input type="radio" id="hard" value="6"></input>
+                    </form>
+ 
+ */

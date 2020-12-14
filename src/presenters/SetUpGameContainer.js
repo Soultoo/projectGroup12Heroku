@@ -13,8 +13,7 @@ import { searchAlbums } from "../api/ImgurSource"
 
 // actions:
 
-import { setSearchQuery, promiseAction, setPhotoURL, setDifficulty } from "../redux-model/actions"
-import { difficultyRed } from "../redux-model/reducers";
+import { setSearchQuery, promiseAction, setPhotoURL  } from "../redux-model/actions"
 
 // förbereda props
 const SetUpGameContainer = ({nav}) => {
@@ -26,7 +25,7 @@ const SetUpGameContainer = ({nav}) => {
       query: state.searchQueryRed,
       searchResults: state.searchResultsRed,
       photoURL:state.photoURLRed,
-      difficulty:state.difficultyRed
+      //difficulty:state.difficultyRed
     }
   }
   
@@ -35,7 +34,7 @@ const SetUpGameContainer = ({nav}) => {
       setSearchQuery: (q) => dispatch(setSearchQuery(q)),
       promiseAction: (dispatch,promise,actionName) => dispatch(promiseAction(dispatch,promise,actionName)),
       setPhotoURL: (URL) => dispatch(setPhotoURL(URL)),
-      setDifficulty: (nr) => dispatch(setDifficulty(nr))
+      //setDifficulty: (nr) => dispatch(setDifficulty(nr))
     }
   }
 

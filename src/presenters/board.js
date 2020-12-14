@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { canSwap, winCheck, shuffleTilePositions, pictoSwap } from "./boardFunctions";
-import { Tile } from "../presenters/tiles";
 import '../board.css'; 
 import BoardView from '../views/boardView';
+import { useSelector } from "react-redux";
 
-export function Board({imageURL}){
-    //const { rows, columns, images, boardSize,amountOfTiles } = props;
+export function Board(){
+    const imageURL = useSelector(state=>state.photoURLRed);
+    
     const rows = 4;
     const columns = 4;
-    //const images;
     const GRID_SIZE = 4;
     const TILE_COUNT = GRID_SIZE*GRID_SIZE;
-
+    
     const amountOfTiles=rows*columns;
     const BOARD_SIZE = 250;
 

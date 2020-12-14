@@ -17,6 +17,7 @@ const BoardView=({imgURL,
 
 
 return <div class="testBoard">
+    <div class="gamecontainer">
         <ul style={style} className="board">
         {tilesArray.map((tile, index ) => (
             <Tile class = "tiletile"
@@ -34,12 +35,13 @@ return <div class="testBoard">
 
         ))}
         </ul>
-            <div>
-            {gameWon && gameStarted && <div>You solved pictoSwap!</div>}
+    </div>
+    <div>
+        {gameWon && gameStarted && <div>You solved pictoSwap! :)</div>}
         {!gameStarted ?
         (<button onClick={() => handleStartClick()}>Start game!</button>) :
         (<button onClick={() => handleShuffleClick()}>Shuffle again!</button>)}
-        </div>
+    </div>
 </div>
 }
 /*
