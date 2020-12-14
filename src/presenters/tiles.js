@@ -55,7 +55,7 @@ export function Tile(props) {
           className="tile"
           onClick={() => handleTileClick(index)}
         >
-          {!imgUrl && `${tile + 1}`}
+          <p className="tileNumber">{tile + 1}</p>
           
           
         </li>
