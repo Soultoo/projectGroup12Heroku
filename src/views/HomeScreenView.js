@@ -1,4 +1,7 @@
 const HomeScreenView = ({props, nav}) => {
+  const boardSize = 3;
+  const board = [...Array(boardSize).keys()]; 
+  let counter = 1; 
   return (
     <div class="container"> 
       <div class="homescreen-container">

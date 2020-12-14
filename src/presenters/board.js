@@ -1,119 +1,97 @@
-import React, {useState} from 'react';
-
-// function to check if player has completed the game
-
-// Install react motion?
+import React, { useState } from 'react';
+import { canSwap, winCheck, shuffleTilePositions, pictoSwap } from "./boardFunctions";
+import '../board.css'; 
+import BoardView from '../views/boardView';
+import { useSelector } from "react-redux";
 
 export function Board(){
-    let amountOfTiles, boardSize, columns, rows, tile_width, tile_height;
+    const imageURL = useSelector(state=>state.photoURLRed);
     
-    let [numberOfTiles, setNumberOfTiles] = useState([...Array(numberOfTiles)]); 
-    // another state used to show finished image before started game
+    const rows = 4;
+    const columns = 4;
+    const GRID_SIZE = 4;
+    const TILE_COUNT = GRID_SIZE*GRID_SIZE;
+    
+    const amountOfTiles=rows*columns;
+    const BOARD_SIZE = 250;
+
+    const [tilesArray, setTilesArray] = useState([...Array(amountOfTiles).keys()]);
     const [gameStarted, setGameStarted] = useState(false);
+    console.log('is started:', gameStarted);
 
-    // const gameWon
+    const shuffleTiles = () => {
+        const shuffledTiles = shuffleTilePositions(tilesArray, rows, columns);
+        setTilesArray(shuffledTiles);
+
+    };
+ 
+    const pictoSwapTile = (index) => {
+      if (canSwap(index, tilesArray.indexOf(tilesArray.length - 1), GRID_SIZE)) {
+        const swappedTiles = pictoSwap(tilesArray, index, tilesArray.indexOf(tilesArray.length - 1))
+        setTilesArray(swappedTiles)
+      }
+    }
+
+    const handleTileClick = (index) => {
+      pictoSwapTile(index)
+    }
     
-    // tile swapping, use swapTilesCheck
-
-    const startGame = () => {
-        shuffleTilesPosition();
-        setGameStarted(true);
-    }
-
-    const restartGame = () => {
-        shuffleTilesPosition();
+    const handleShuffleClick = () => {
+      shuffleTiles()
     }
     
-
-    // depending, on chosen difficulty, there will be a different amount of columns and rows
-    // we decide to keep the board size the same no matter difficulty
-    // uses the 4x4 as a "middle ground" for the board size, wants the board size to be 
-    // not too small but not too big 
-    const handleEasyOption = () => {
-        columns === 3;
-        rows === 3;
-        col_row_number === 3;
+    const handleStartClick = () => {
+      shuffleTiles()
+      setGameStarted(true)
     }
+    const pieceWidth = Math.round(BOARD_SIZE / GRID_SIZE);
+    const pieceHeight = Math.round(BOARD_SIZE / GRID_SIZE);
+    const style = {
+      width: BOARD_SIZE,
+      height: BOARD_SIZE,
+    };
 
-    const handleMediumOption = () => {
-        columns === 4;
-        rows === 4;
-        col_row_number === 4;
+    const coordinates = (rows) => {
+      let coordArray = [];
+      for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < rows; j++) {
+          coordArray = coordArray.concat({"posX": j, "posY": i});
+        }
+      }
+      return coordArray;
     }
+        
+    function getMeta(url){
+      let img = new Image();
+      img.src = url;
+      if (img.naturalWidth < img.naturalHeight){
 
-    const handleHardOption = () => {
-        columns === 5;
-        rows === 5;
-        col_row_number === 5;
+        return [img.naturalWidth, true];
+      }
+      
+      else {
+        return [img.naturalHeight,false];
+      }
     }
-
-    // depending on the difficulty, there will be a different amount of tiles
-    amountOfTiles === columns * rows;
-    boardSize === 400*400;
-
-    tile_height === boardSize/amountOfTiles;
-    tile_width === boardSize/amountOfTiles;
-
-    const ButtonOptions=(
-        <div>
-            <button className="chooseButton">Choose difficulty!</button>
-            <div className="difficultyButton">
-                <button type="button" onClick={()=>handleEasyOption}>Easy</button>
-                <button type="button" onClick={()=>handleMediumOption}>Medium</button>
-                <button type="button" onClick={()=>handleHardOption}>Hard</button>
-            </div>
-        </div>
-        )
-}
-
-// Function to check if a starting position is solvable
-export function solvableCheck() {
+    const gameWon = winCheck(tilesArray);
+    
+return (<BoardView 
+  imgURL ={imageURL} 
+  tilesArray={tilesArray} 
+  pieceWidth={pieceWidth} 
+  pieceHeight={pieceHeight} 
+  handleTileClick={(index)=>handleTileClick(index)} 
+  handleStartClick={handleStartClick} 
+  handleShuffleClick={handleShuffleClick} 
+  gameWon={gameWon} 
+  gameStarted={gameStarted} 
+  coordArray = {coordinates(rows)} 
+  imgDim = {getMeta(imageURL)} 
+  boxGrid = {GRID_SIZE} 
+  BOARD_SIZE={BOARD_SIZE} 
+  TILE_COUNT={TILE_COUNT} 
+  style = {style}/>)    
 
 }
-
-// Shuffle tiles so that the tiles are at random places in the beginning
-export function shuffleTilesPosition(tiles) {
-    let tiles_shuffled = [...tiles];
-    tiles_shuffled.sort(()=>Math.random()-0.5);
-    return tiles_shuffled;
-
-}
-
-// Function to check if the chosen tiles are possible to swap (aka next to each other on the board)
-export function swapTilesCheck(oldPositionIndex, newPositionIndex) {
-    const {row: oldPositionRow, column: oldPositionCol} = 
-    // to get the index position in the board matrix
-    {row: Math.floor(oldPositionIndex/col_row_number), 
-    column: oldPositionIndex%col_row_number};
-
-    const {row: newPositionRow, column: newPositionCol} = 
-    {row: Math.floor(newPositionIndex/col_row_number), 
-    column: newPositionIndex%col_row_number};
-
-    return 
-}
-
-export function pictoSwap(tiles, oldPosition, newPosition) {
-    const tiles_copy = [...tiles];
-    tiles_copy[newPosition] = tiles_copy[oldPosition];
-    tiles_copy[oldPosition] = tiles_copy[newPosition];
-    return tiles_copy;
-}
-
-
-// Function to choose image
-export function chooseImage() {
-
-}
-
-// Function to check if the board is solved
-export function winCheck(tiles) {
-
-}
-
 
 export default Board;
-
-
-
-

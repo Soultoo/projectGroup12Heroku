@@ -1,8 +1,5 @@
 
-
-
-
-const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSearchQuery, promiseAction, setPhotoURL}) => {
+const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSearchQuery, promiseAction, setPhotoURL, photoURL}) => {
   let q = "";
 
   return (
@@ -16,21 +13,21 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
         <div class="search searchgrid">
           <div class="searchmain">
             <form >
-              <input class="search" onBlur={function(event) {setSearchQuery(event.target.value);}} placeholder={"Example: Cats"}>
+              <input key="searchImages" class="search" onBlur={(event)=>{setSearchQuery(event.target.value)}} placeholder={query}>
                 </input>
             </form>
           </div>
 
           <div class="searchright">
-            <button onClick={()=>promiseAction(
+            <button key="triggerSearch" onClick={()=>promiseAction(
               dispatch,
               searchAlbums(query), // FIXA
               "SETSEARCHRESULTS") // FIXA
               }>Search!</button>
           </div>
 
-
-          <div class="album searchbulk">
+            
+          <div key="fancyAlbum" class="album searchbulk">
 
             { // Måste förhindra att man väljer videor
                 searchResults.filter(x=>(
@@ -49,7 +46,11 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
           
         </div>
         <div class="footer">
-          
+        <div class="uglysolution">
+        <span>
+          {(photoURL)? <span>You have chosen: {<img src={photoURL} width="100px" class="album" />}</span>:""}
+        </span>
+      </div>
           <button class="start" onClick = {()=>nav[1]()}>Start game!</button>
         
         </div>
@@ -59,3 +60,15 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
 }
 
 export default SetUpGameView;
+
+/*
+<form key="difficultyChoices" class="difficulty" onChange={(event)=>setDifficulty(event.target.value)}>
+            <label for="easy">Easy (4x4)</label>
+            <input type="radio" id="easy" value="4" ></input>
+            <label for="medium">Medium (5x5)</label>
+            <input type="radio" id="medium" value="5"></input>
+            <label for="hard">Hard (6x6)</label>
+            <input type="radio" id="hard" value="6"></input>
+                    </form>
+ 
+ */

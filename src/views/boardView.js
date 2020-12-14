@@ -1,21 +1,55 @@
-import {tilesInGame} from "./tiles";
-import {} from "./board";
+import { Tile } from "../presenters/tiles";
+import '../board.css'; 
+const BoardView=({imgURL, 
+    tilesArray, 
+    pieceWidth, 
+    pieceHeight, 
+    handleTileClick, 
+    handleStartClick, 
+    handleShuffleClick, 
+    gameWon, 
+    gameStarted, 
+    coordArray, 
+    imgDim, 
+    boxGrid, 
+    TILE_COUNT, 
+    style})=>{
 
-return (
-    <>
-    <ul className="board">
-        {tilesInGame.map((tile, index) =>(
-            <tilesInGame
-            index = {index}
-            imageLink = {imageLink}
-            tile = {tile}
-            key = {tile}
-            height = {tile_height}
-            width = {tile_width}
-            />
+
+return <div class="testBoard">
+    <div class="gamecontainer">
+        <ul style={style} className="board">
+        {tilesArray.map((tile, index ) => (
+            <Tile class = "tiletile"
+            key={tile}
+            index={index}
+            tile={tile}
+            width={pieceWidth}
+            height={pieceHeight}
+            imgUrl = {imgURL}
+            boxGrid = {boxGrid}
+            handleTileClick={handleTileClick}
+            imgDim = {imgDim}
+            TILE_COUNT= {TILE_COUNT}
+        />
+
         ))}
-    </ul>
-    {gameStarted === false? (<button onClick={()=>Board.startGame()}>Play!</button>):(<button onClick={()=>Board.restartGame()}>Restart!</button>) }
-    </>
-)
+        </ul>
+    </div>
+    <div>
+        {gameWon && gameStarted && <div>You solved pictoSwap! :)</div>}
+        {!gameStarted ?
+        (<button onClick={() => handleStartClick()}>Start game!</button>) :
+        (<button onClick={() => handleShuffleClick()}>Shuffle again!</button>)}
+    </div>
+</div>
+}
+/*
+Göra så att efter game started --> difficulty --> reshuffle. Lägga till timer
+*/
+ 
+export default BoardView;
 
+
+/*            imgUrl={imgUrl}
+ */
