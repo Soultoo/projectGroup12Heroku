@@ -194,9 +194,23 @@ button.search{
                                     /*  ALBUM  */
 
 .album{
-  border: solid;
+  background-color: #CBB9B9;
+  box-shadow: inset 0 0 10px rgba(60,60, 60,0.19);  
+  border-radius: 12px;
+
 }
 
 .album > img {
   margin:15px;
+  border:solid white;
+  border-radius: 12px;
+  box-shadow: 0 9px #999;
+  cursor: pointer;
 }
+.album > img:active{
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+/*                                      GAME VIEW   */

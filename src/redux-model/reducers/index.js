@@ -121,3 +121,4 @@ export const allReducers = combineReducers({
   imagePromise: imagePromiseRed,
   chosenAlbumRed: chosenAlbumRed
 });
+// index, position, image, width, height, boardSize (rows, cols)

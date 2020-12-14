@@ -1,15 +1,19 @@
+import Board from "../presenters/board";
+
 const GameView = ({props, nav}) => {
-  return (
-    <div class="container">
-      <p>
-        <button onClick = {()=>nav[0]()}>Quit</button>
-      </p>
-      <p>
-        <button onClick = {()=>nav[1]()}>Continue</button>
-      </p>
-      <p>
-        <button onClick = {()=>null}>Reset round</button>
-      </p>
+  return (<div>
+            <button class="back" onClick = {()=>nav[0]()}>Back</button>
+              <div class="container gamecont">
+                <div class="header">
+                  <h1 class="setupgame">PictoSwap</h1>
+                </div>
+                <div class="nav">
+                    <button onClick = {()=>nav[1]()}>High Scores</button>                  
+              </div>
+              <div class="game">
+                <Board/>
+              </div>
+            </div>
     </div>
   )
 }
