@@ -13,11 +13,24 @@ const BoardView=({imgURL,
     imgDim, 
     boxGrid, 
     TILE_COUNT, 
-    style})=>{
-
-
+    style,
+    handleAddToHighScore})=>{
+        let name;
 return <div class="testBoard">
+     <div>
+            <div>
+            {gameWon && gameStarted && <div>
+                <span>You solved pictoSwap! :) </span>
+                <input class="gameinput" onChange={(event)=>name=event.target.value} />
+                <button onClick={()=>handleAddToHighScore(name)}>Add your score to the highscore?</button>
+            </div>}
+            {!gameStarted ?
+            (<button onClick={() => handleStartClick()}>Start game!</button>) :
+            (<button onClick={() => handleShuffleClick()}>Shuffle again!</button>)}
+        </div>
+        </div>
     <div class="gamecontainer">
+       
         <ul style={style} className="board">
         {tilesArray.map((tile, index ) => (
             <Tile class = "tiletile"
@@ -36,13 +49,8 @@ return <div class="testBoard">
         ))}
         </ul>
     </div>
-    <div>
-        {gameWon && gameStarted && <div>You solved pictoSwap! :)</div>}
-        {!gameStarted ?
-        (<button onClick={() => handleStartClick()}>Start game!</button>) :
-        (<button onClick={() => handleShuffleClick()}>Shuffle again!</button>)}
+    
     </div>
-</div>
 }
 /*
 Göra så att efter game started --> difficulty --> reshuffle. Lägga till timer
@@ -50,6 +58,5 @@ Göra så att efter game started --> difficulty --> reshuffle. Lägga till timer
  
 export default BoardView;
 
-
-/*            imgUrl={imgUrl}
- */
+// 
+//
