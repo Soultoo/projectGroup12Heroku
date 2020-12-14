@@ -130,7 +130,7 @@ function App() {
   const [photoURL, setPhotoURL] = useState("")
 // Hittar bildtyp i albumet.images[indexFörArrayen].type, ska nog exkludera annat än bilder
   ImgurSource.searchAlbums("dog").then(x=>{
-    console.log(x.data[1])
+    //console.log(x.data[1])
     setPhotoURL(x.data[1].images[0].link)
 
   });
@@ -143,7 +143,7 @@ function App() {
   const query = useSelector(state=> state.searchQueryRed);
   const searchResults = useSelector(state=> state.searchResultsRed);
 
-  console.log(counter);
+  //console.log(counter);
   const dispatch = useDispatch();
 
   testDB();

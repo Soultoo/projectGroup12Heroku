@@ -30,7 +30,6 @@ export function getIndex(row, col) {
 export function getMatrixPosition(index, GRID_SIZE) {
     const row = Math.floor(index / GRID_SIZE);
     const col = index % GRID_SIZE;
-    console.log(row, col, "yay")
   return {row: row, col: col};
 }
 export function getVisualPosition(row, col, width, height) {
@@ -39,12 +38,7 @@ export function getVisualPosition(row, col, width, height) {
     y: row * height,
   };
 }
-/*
- export function shuffleTilePositions(tilesArray) {
-  let tiles_shuffled = [...tilesArray];
-  tiles_shuffled.sort(() => Math.random() - 0.5);
- }
- */
+
  export function shuffleTilePositions(tiles) {
   const shuffledTiles = [
     ...tiles
@@ -58,11 +52,8 @@ export function getVisualPosition(row, col, width, height) {
 }
   
   export function canSwap(srcIndex, destIndex, GRID_SIZE) {
-    console.log(srcIndex, "index")
     const {row: srcRow, col: srcCol} = getMatrixPosition(srcIndex, GRID_SIZE);
-    console.log(srcRow, srcCol)
     const {row: destRow, col: destCol} = getMatrixPosition(destIndex, GRID_SIZE);
-    console.log(Math.abs(srcRow - destRow) + Math.abs(srcCol - destCol) === 1)
     return Math.abs(srcRow - destRow) + Math.abs(srcCol - destCol) === 1;
   }
 

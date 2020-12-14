@@ -6,7 +6,7 @@
 
   .tile {
     position: relative;
-    width: 100%;
+    /*width: 100%;*/
     list-style: none;
     background: #ec6f66;
     display: grid;
@@ -22,7 +22,7 @@
     position: relative;
     display: grid;
     padding: 0;
-    grid-gap: px;
+    grid-gap: 5px;
     grid-template-rows: repeat(4, 100px);
     grid-template-columns: repeat(4, 100px);
     

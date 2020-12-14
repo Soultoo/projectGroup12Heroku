@@ -1,6 +1,21 @@
 import { Tile } from "../presenters/tiles";
 import '../board.css'; 
-const BoardView=({imgURL, tilesArray, pieceWidth, pieceHeight, handleTileClick, handleStartClick, handleShuffleClick, gameWon, gameStarted, style, coordArray, imgDim, boxGrid})=>{
+const BoardView=({imgURL, 
+    tilesArray, 
+    pieceWidth, 
+    pieceHeight, 
+    handleTileClick, 
+    handleStartClick, 
+    handleShuffleClick, 
+    gameWon, 
+    gameStarted, 
+    coordArray, 
+    imgDim, 
+    boxGrid, 
+    TILE_COUNT, 
+    style})=>{
+
+
 return <div class="testBoard">
         <ul style={style} className="board">
         {tilesArray.map((tile, index ) => (
@@ -12,15 +27,11 @@ return <div class="testBoard">
             height={pieceHeight}
             imgUrl = {imgURL}
             boxGrid = {boxGrid}
-            handleTileClick={handleTileClick()}
+            handleTileClick={handleTileClick}
             coordArrayIndex = {coordArray[index]}
             imgDim = {imgDim}
-            
-            
-            
-            
-
-            />
+            TILE_COUNT= {TILE_COUNT}
+        />
 
         ))}
         </ul>

@@ -10,6 +10,7 @@ export function Board({imageURL}){
     const columns = 4;
     //const images;
     const GRID_SIZE = 4;
+    const TILE_COUNT = GRID_SIZE*GRID_SIZE;
 
     const amountOfTiles=rows*columns;
     const BOARD_SIZE = 320;
@@ -30,9 +31,8 @@ export function Board({imageURL}){
         setTilesArray(swappedTiles)
       }
     }
-    
+
     const handleTileClick = (index) => {
-      console.log(index, 10000)
       pictoSwapTile(index)
     }
     
@@ -40,6 +40,8 @@ export function Board({imageURL}){
       shuffleTiles()
     }
     
+    const handleStartClick = () => {
+      shuffleTiles()
       setGameStarted(true)
     }
     const pieceWidth = Math.round(BOARD_SIZE / GRID_SIZE);
@@ -48,40 +50,50 @@ export function Board({imageURL}){
       width: BOARD_SIZE,
       height: BOARD_SIZE,
     };
-      const coordinates = (rows) => {
-        let coordArray = [];
-        for (let i = 0; i < rows; i++) {
-          for (let j = 0; j < rows; j++) {
-            coordArray = coordArray.concat({"posX": j, "posY": i});
-          }
-        console.log(coordArray)
+
+    const coordinates = (rows) => {
+      let coordArray = [];
+      for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < rows; j++) {
+          coordArray = coordArray.concat({"posX": j, "posY": i});
         }
-        return coordArray;
       }
+      return coordArray;
+    }
         
-      function getMeta(url){
-        let img = new Image();
-        img.addEventListener("load", function(){
-          alert(this.naturalWidth + " " + this.naturalHeight)
-        })
-        img.src = url;
-        if (img.naturalWidth < img.naturalHeight){
+    function getMeta(url){
+      let img = new Image();
+      img.addEventListener("load", function(){
+        alert(this.naturalWidth + " " + this.naturalHeight)
+      })
+      img.src = url;
+      if (img.naturalWidth < img.naturalHeight){
 
-          return [img.naturalWidth, true];
-        }
-        
-        else {
-          return [img.naturalHeight,false];
-        }
-        }
-return (<BoardView imgURL ={imageURL} tilesArray={tilesArray} pieceWidth={pieceWidth} pieceHeight={pieceHeight} handleTileClick={handleTileClick} handleStartClick={handleStartClick} handleShuffleClick={handleShuffleClick} gameWon={gameWon} gameStarted={gameStarted} coordArray = {coordinates(rows)} imgDim = {getMeta(imageURL)} boxGrid = {GRID_SIZE}/>)    
-    const handleStartClick = () => {
-      shuffleTiles()
-
-
+        return [img.naturalWidth, true];
+      }
+      
+      else {
+        return [img.naturalHeight,false];
+      }
+    }
     const gameWon = winCheck(tilesArray);
     
-return (<BoardView tilesArray={tilesArray} pieceWidth={pieceWidth} pieceHeight={pieceHeight} handleTileClick={(index)=>handleTileClick(index)} handleStartClick={handleStartClick} handleShuffleClick={handleShuffleClick} gameWon={gameWon} gameStarted={gameStarted} BOARD_SIZE={BOARD_SIZE} GRID_SIZE={GRID_SIZE}/>)    
+return (<BoardView 
+  imgURL ={imageURL} 
+  tilesArray={tilesArray} 
+  pieceWidth={pieceWidth} 
+  pieceHeight={pieceHeight} 
+  handleTileClick={(index)=>handleTileClick(index)} 
+  handleStartClick={()=>handleStartClick} 
+  handleShuffleClick={()=>handleShuffleClick} 
+  gameWon={gameWon} 
+  gameStarted={gameStarted} 
+  coordArray = {coordinates(rows)} 
+  imgDim = {getMeta(imageURL)} 
+  boxGrid = {GRID_SIZE} 
+  BOARD_SIZE={BOARD_SIZE} 
+  TILE_COUNT={TILE_COUNT} 
+  style = {style}/>)    
 
 }
 
