@@ -142,7 +142,6 @@ function App() {
     <div className="App" onLoad={null}>
       <header className="App-header">
       </header>
-      {time.m} : {time.s}
       <Show hash="#homescreen">
         <HomeScreenContainer nav = {[setUpGameNav, highScoreNav]}/>
       </Show>
