@@ -10,7 +10,6 @@ export function Tile(props) {
       imgUrl,  
       boxGrid,
       handleTileClick, 
-      coordArrayIndex, 
       imgDim, 
       TILE_COUNT 
        } = props;
@@ -20,7 +19,7 @@ export function Tile(props) {
   //console.log(`-${(100) * (coordArrayIndex.posX)}%`)
   //console.log(`-${(100) * (coordArrayIndex.posY)}%`)
   //console.log(boxGrid, 2) // row = NaN - fixed!!
-  
+  const BOARD_SIZE=imgDim[0];
   const tileStyle = {
 
     //width: `calc(100% / ${boxGrid})`,
@@ -28,7 +27,8 @@ export function Tile(props) {
     translateX: visualPos.x,
     translateY: visualPos.y,
     backgroundImage: `url(${imgUrl})`, 
-    backgroundSize: imgDim[1] ? `${boxGrid*100}%` : `auto ${boxGrid*100}%`, //kan skala om bilden här!, hitta dim av bilden, skala om efter minsta sidan
+   // backgroundSize: imgDim[1] ? `${boxGrid*100}%` : `auto ${boxGrid*100}%`, //kan skala om bilden här!, hitta dim av bilden, skala om efter minsta sidan
+   backgroundSize: `${BOARD_SIZE * (1+1/boxGrid)}px`,
 
     //backgroundPosition: `-${(100) * (coordArrayIndex.posX)}% -${(100) * (coordArrayIndex.posY)}%`,
     backgroundPosition: `${(100 / boxGrid) * (tile % boxGrid)}% ${(100 / boxGrid) * (Math.floor(tile / boxGrid))}%`,

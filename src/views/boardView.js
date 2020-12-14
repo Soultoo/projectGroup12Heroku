@@ -28,7 +28,6 @@ return <div class="testBoard">
             imgUrl = {imgURL}
             boxGrid = {boxGrid}
             handleTileClick={handleTileClick}
-            coordArrayIndex = {coordArray[index]}
             imgDim = {imgDim}
             TILE_COUNT= {TILE_COUNT}
         />

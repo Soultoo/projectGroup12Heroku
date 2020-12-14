@@ -13,7 +13,7 @@ export function Board({imageURL}){
     const TILE_COUNT = GRID_SIZE*GRID_SIZE;
 
     const amountOfTiles=rows*columns;
-    const BOARD_SIZE = 320;
+    const BOARD_SIZE = 250;
 
     const [tilesArray, setTilesArray] = useState([...Array(amountOfTiles).keys()]);
     const [gameStarted, setGameStarted] = useState(false);
