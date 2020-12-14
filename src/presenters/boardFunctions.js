@@ -65,6 +65,8 @@ export function getVisualPosition(row, col, width, height) {
     console.log(Math.abs(srcRow - destRow) + Math.abs(srcCol - destCol) === 1)
     return Math.abs(srcRow - destRow) + Math.abs(srcCol - destCol) === 1;
   }
+
+
   
  // simple swapping function
   export function pictoSwap(tiles, src, dest) {

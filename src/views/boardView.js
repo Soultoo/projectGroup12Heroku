@@ -1,18 +1,27 @@
 import { Tile } from "../presenters/tiles";
 import '../board.css'; 
-const BoardView=({imgURL, tilesArray, pieceWidth, pieceHeight, handleTileClick, handleStartClick, handleShuffleClick, gameWon, gameStarted, style})=>{
+const BoardView=({imgURL, tilesArray, pieceWidth, pieceHeight, handleTileClick, handleStartClick, handleShuffleClick, gameWon, gameStarted, style, coordArray, imgDim, boxGrid})=>{
 return <div class="testBoard">
         <ul style={style} className="board">
-        {tilesArray.map((tile, index) => (
-            <Tile
+        {tilesArray.map((tile, index ) => (
+            <Tile class = "tiletile"
             key={tile}
             index={index}
             tile={tile}
             width={pieceWidth}
             height={pieceHeight}
-            handleTileClick={handleTileClick}
+            imgUrl = {imgURL}
+            boxGrid = {boxGrid}
+            handleTileClick={handleTileClick()}
+            coordArrayIndex = {coordArray[index]}
+            imgDim = {imgDim}
+            
+            
+            
+            
 
             />
+
         ))}
         </ul>
             <div>

@@ -1,4 +1,5 @@
 
+import { act } from "react-dom/test-utils";
 import { combineReducers } from "redux";
 
 export const counter = (state = 0, action) => {
@@ -30,12 +31,31 @@ export const searchQueryRed = (state = "", action) => {
   return ((action.payload || action.payload === "") && action.type == "SETSEARCHQUERY") ? action.payload : state;
 }
 
+
+export const photoURLRed = (state="", action) => {
+  return ((action.payload || action.payload === "") && action.type == "SETPHOTOURL") ? action.payload : state;
+}
+
+
+
+// MÅSTE HA ERROR HANDLING!!!!
+export const searchResultsRed = (state=[], action) => {
+  if ((action.payload || action.payload === []) && action.type == "SETSEARCHRESULTS" 
+    && !(Object.keys(action.payload).length === 0 && action.payload.constructor === Object)) 
+    return action.payload;
+  
+  return [];
+}
+
+
+
+
 export const searchPromiseRed = (state = "", action)=>{
   return ((action.payload || action.payload === "") && action.type == "SETSEARCHPROMISE") ? action.payload : state;
 }
 
-export const imagePromiseRed = (state = "", action) => {
-  return ((action.payload || action.payload === "") && action.type == "SETIMAGEPROMISE") ? action.payload : state;
+export const imagePromiseRed = (state = null, action) => {
+  return ((action.payload || action.payload === null) && action.type == "SETIMAGEPROMISE") ? action.payload : state;
 }
 
 export const chosenAlbumRed = (state = false, action) => {
@@ -43,22 +63,8 @@ export const chosenAlbumRed = (state = false, action) => {
 
 }
 
-export const boardSizeRed = (state = [{"posX":2, "posY":3},{"posX":4, "posY":1}], action) => {
-  let boardGrid = new Array()
-  if (action.payload && action.type == "SETBOARDSIZE") {  
-    for (let i= 1, k = action.payload; i <= k; i++){
-      for (let j= 1, k = action.payload; j <= k; j++) {
-        boardGrid = boardGrid.concat({"posX":j, "posY":i})
-      }
-    }
-  }
-  else {
-    return state;
-  } 
 
-  console.log(boardGrid)
-  return  boardGrid
-}
+
 
 // Combined Reducer
 
@@ -67,9 +73,14 @@ export const allReducers = combineReducers({
   gameRunRed:gameRunRed,
   numberOfTilesRed:numberOfTilesRed,
   searchQueryRed:searchQueryRed,
+
+  searchResultsRed:searchResultsRed,
+  photoURLRed:photoURLRed,
+
+
   searchPromise: searchPromiseRed,
   imagePromise: imagePromiseRed,
   chosenAlbumRed: chosenAlbumRed,
-  boardSizeRed: boardSizeRed
+  
 });
 // index, position, image, width, height, boardSize (rows, cols)
