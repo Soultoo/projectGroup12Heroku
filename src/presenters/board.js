@@ -13,8 +13,8 @@ export function Board({imageURL}){
     const rows = 4;
     const columns =4;
     //const images;
-   const GRID_SIZE =4;
-
+    const GRID_SIZE =4;
+    
     const amountOfTiles=rows*columns;
     const BOARD_SIZE = 320;
 
@@ -25,6 +25,7 @@ export function Board({imageURL}){
     const shuffleTiles = () => {
         const shuffledTiles = shuffleTilePositions(tilesArray, rows, columns);
         setTilesArray(shuffledTiles);
+
     };
  
     const pictoSwapTile = (index) => {
@@ -47,6 +48,39 @@ export function Board({imageURL}){
         shuffleTiles()
         setGameStarted(true)
       }
+
+          
+      const coordinates = (rows) => {
+        let coordArray = [];
+        for (let i = 0; i < rows; i++) {
+          for (let j = 0; j < rows; j++) {
+            coordArray = coordArray.concat({"posX": j, "posY": i});
+          }
+        }
+        console.log(coordArray)
+        return coordArray;
+      }
+        
+      function getMeta(url){
+        let img = new Image();
+        img.addEventListener("load", function(){
+          alert(this.naturalWidth + " " + this.naturalHeight)
+        })
+        img.src = url;
+        
+        if (img.naturalWidth < img.naturalHeight){
+
+          return [img.naturalWidth, true];
+        }
+        else {
+          return [img.naturalHeight,false];
+        }
+        }
+/*
+      const imgDim = () => {
+        getMeta(im)
+      }
+      */
   /*
     const handleEasyOption = () => {
         let columns = 3;
@@ -73,7 +107,7 @@ export function Board({imageURL}){
           width: BOARD_SIZE,
           height: BOARD_SIZE,
         };
-return (<BoardView tilesArray={tilesArray} pieceWidth={pieceWidth} pieceHeight={pieceHeight} handleTileClick={handleTileClick} handleStartClick={handleStartClick} handleShuffleClick={handleShuffleClick} gameWon={gameWon} gameStarted={gameStarted}/>)    
+return (<BoardView imgURL ={imageURL} tilesArray={tilesArray} pieceWidth={pieceWidth} pieceHeight={pieceHeight} handleTileClick={handleTileClick} handleStartClick={handleStartClick} handleShuffleClick={handleShuffleClick} gameWon={gameWon} gameStarted={gameStarted} coordArray = {coordinates(rows)} imgDim = {getMeta(imageURL)} boxGrid = {GRID_SIZE}/>)    
 
 }
 

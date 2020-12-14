@@ -172,12 +172,18 @@ button.search{
 .searchright { 
   grid-area: searchright; 
   margin: auto;}
+.searchbulk{
+  grid-area: searchbulk;
+  margin:auto;
+}
 
 .searchgrid{
   display: grid;
   grid-template-areas:
   'searchheader searchheader searchheader'
-  'searchmain searchmain searchright';
+  'searchmain searchmain searchright'
+  'searchbulk searchbulk searchbulk'
+  'searchbulk searchbulk searchbulk';
 }
 
 .searchgrid > div {
@@ -186,3 +192,11 @@ button.search{
 }
 
                                     /*  ALBUM  */
+
+.album{
+  border: solid;
+}
+
+.album > img {
+  margin:15px;
+}

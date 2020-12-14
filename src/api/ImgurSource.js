@@ -21,10 +21,11 @@ export const searchAlbums=( query ) =>{
         redirect: 'follow'
       };
 
+    
     let searchString;
     (!query) ? searchString = "cats" : searchString =  query;
 
-    return apiCall("gallery/search/?mature=false&q=" + new URLSearchParams(searchString), requestOptions);
+    return apiCall("gallery/search/?mature=false&perPage=1&q=" + new URLSearchParams(searchString), requestOptions);
     // lagt till mature=false för att förhoppningsvis censurera en aning :3
     
 }
@@ -36,7 +37,7 @@ export const getImages=(id)=>{
       };
     let searchparam;
     (!id) ? searchparam = "": searchparam = id;
-    return apiCall("gallery/album/" + new URLSearchParams(searchparam), requestOptions)
-    .then(results => results.images);
+    return apiCall("gallery/album/" + new URLSearchParams(searchparam), requestOptions);
+    //.then(results => results.images);+
 
 }

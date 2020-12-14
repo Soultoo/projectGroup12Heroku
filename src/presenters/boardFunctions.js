@@ -83,6 +83,8 @@ export function getVisualPosition(row, col, width, height) {
     const { row: destRow, col: destCol } = getMatrixPosition(destIndex);
     return Math.abs(srcRow - destRow) + Math.abs(srcCol - destCol) === 1;
   }
+
+
   
  // simple swapping function
  export function pictoSwap(tilesArray, oldPosition, newPosition) {
