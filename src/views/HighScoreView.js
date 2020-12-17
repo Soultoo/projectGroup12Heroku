@@ -24,7 +24,9 @@ const HighScoreView = ({props, nav, scores}) => {
                   <th class="highscore time">Number of moves:</th>
                   </tr>
                   
-                  {scores && scores.map((scoreElement, index) => (
+                  {!scores && <p>loading</p> 
+                  ||
+                  scores && scores.map((scoreElement, index) => (
                   <tr class="highscore" key={scoreElement.id}>
                     <td class="highscore position">{index+1}</td>
                     <td class="highscore name">{scoreElement.name}</td>

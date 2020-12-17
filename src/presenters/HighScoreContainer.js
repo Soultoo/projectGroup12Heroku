@@ -10,6 +10,8 @@ import { connect } from "react-redux";
 
 import HighScoreView from "../views/HighScoreView";
 
+import { useEffect } from "react";
+
 //const connected = connect(
 //)(HighScoreView);
 
@@ -21,6 +23,12 @@ const HighScoreContainer = ({nav}) => {
   const scoreStoreRef = firestore.collection("highScores");
   const query = scoreStoreRef.orderBy("score").limit(100);
   const [scores] = useCollectionData(query,{idField:"id"});
+
+  useEffect(()=>{
+    console.log("scores:")
+    console.log(scores)
+                }, [scores])
+
   return HighScoreView({nav, scores})
 }
 
