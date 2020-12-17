@@ -1,6 +1,6 @@
 
 import SearchBarContainer from "../presenters/SearchBarContainer"
-const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSearchQuery, promiseAction, setPhotoURL, photoURL}) => {
+const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSearchQuery, promiseAction, setPhotoURL, photoURL, pokemon}) => {
 
 
   return (
@@ -26,24 +26,29 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
 
             
           <div key="fancyAlbum" class="album searchbulk">
-
+            
             { // Måste förhindra att man väljer videor
-                searchResults.filter(x=>(
-                  x.images && 
-                  !(x.images[0].animated) && 
-                  !(x.images[0].height > x.images[0].width
-                    ) &&
-                    !(x.images[0].height>800)) ? true : false).map(x=><img 
-                    src={x.images[0].link}
-                    alt="wow"
-                    width="100px"
-                    onClick={()=>setPhotoURL(x.images[0].link)}
-                    style={{cursor:"pointer"}}
-                    ></img>)
+                (!searchResults) && <img src="../img/loading.gif"></img> 
+                || 
+        
+                
+                  searchResults.filter(x=>(
+                    x.images && 
+                    !(x.images[0].animated) && 
+                    !(x.images[0].height > x.images[0].width
+                      ) &&
+                      !(x.images[0].height>800)) ? true : false).map(x=><img 
+                      src={x.images[0].link}
+                      alt="wow"
+                      width="100px"
+                      onClick={()=>setPhotoURL(x.images[0].link)}
+                      style={{cursor:"pointer",background:"url(https://source.unsplash.com/random/1000x1000)"}}
+                      ></img>)
               }
           </div>
           
         </div>
+        
         <div class="footer">
         <div class="uglysolution">
         <span>

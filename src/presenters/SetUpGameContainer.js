@@ -1,6 +1,6 @@
 // INTE KLAR LÄGG IN RESTEN
 
-import { React } from "react" // den här importen kanske ska vara useDispatch
+import { React, useEffect } from "react" // den här importen kanske ska vara useDispatch
 
 import { connect } from "react-redux";
 
@@ -20,6 +20,9 @@ const SetUpGameContainer = ({nav}) => {
 
   const dispatch = useDispatch();
 
+  useEffect(()=>(console.log("effect")), []); // KÖr bara när huvudkomponenten renderar!!!
+  
+
   const mapStateToProps = (state) => {
     return {
       query: state.searchQueryRed,
@@ -28,7 +31,10 @@ const SetUpGameContainer = ({nav}) => {
       //difficulty:state.difficultyRed
     }
   }
-  
+  const searchResults = useSelector(state=>state.searchQueryRed);
+
+  useEffect(()=>(console.log("effect searchResults")), [searchResults]); // KÖr bara när huvudkomponenten renderar!!!
+
   const mapDispatchToProps = dispatch => {
     return {
       setSearchQuery: (q) => dispatch(setSearchQuery(q)),

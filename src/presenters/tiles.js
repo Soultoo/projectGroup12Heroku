@@ -19,19 +19,24 @@ export function Tile(props) {
   //console.log(`-${(100) * (coordArrayIndex.posX)}%`)
   //console.log(`-${(100) * (coordArrayIndex.posY)}%`)
   //console.log(boxGrid, 2) // row = NaN - fixed!!
-  const BOARD_SIZE=imgDim[0];
+  const boardSize0=imgDim[0];
+  const boardSize1=imgDim[1];
+  console.log(boardSize1, boardSize0);
+  console.log((boardSize1/boardSize0)*400)
   const tileStyle = {
 
     //width: `calc(100% / ${boxGrid})`,
     //height: `calc(100% / ${boxGrid})`,
-    translateX: visualPos.x,
-    translateY: visualPos.y,
+    //translateX: visualPos.x,
+    //translateY: visualPos.y,
     backgroundImage: `url(${imgUrl})`, 
-   // backgroundSize: imgDim[1] ? `${boxGrid*100}%` : `auto ${boxGrid*100}%`, //kan skala om bilden här!, hitta dim av bilden, skala om efter minsta sidan
-   backgroundSize: `${BOARD_SIZE * (1+1/boxGrid)}px`,
+    // backgroundSize: imgDim[1] ? `${boxGrid*100}%` : `auto ${boxGrid*100}%`, //kan skala om bilden här!, hitta dim av bilden, skala om efter minsta sidan
+    // backgroundSize: `${boardSize0 * (1+1/boxGrid)}px`,
+    backgroundSize: `${(boardSize1/boardSize0)*400}px ${400}px`,
 
     //backgroundPosition: `-${(100) * (coordArrayIndex.posX)}% -${(100) * (coordArrayIndex.posY)}%`,
-    backgroundPosition: `${(100 / boxGrid) * (tile % boxGrid)}% ${(100 / boxGrid) * (Math.floor(tile / boxGrid))}%`,
+    //backgroundPosition: `${(100 / boxGrid) * (tile % boxGrid)}% ${(100 / boxGrid) * (Math.floor(tile / boxGrid))}%`,
+    backgroundPosition: `${-(((boardSize1/boardSize0)*400 - 400)/2)  -((tile % boxGrid) * 100)}px ${-((Math.floor(tile / boxGrid)) * 100)}px`,
 
     
     
