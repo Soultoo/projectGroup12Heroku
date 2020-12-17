@@ -1,5 +1,7 @@
 
-import SearchBarContainer from "../presenters/SearchBarContainer"
+import SearchBarContainer from "../presenters/SearchBarContainer";
+import loading from '../img/loading.gif';
+
 const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSearchQuery, promiseAction, setPhotoURL, photoURL, pokemon}) => {
 
 
@@ -10,7 +12,8 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
         <div class="header">
           <h1 class="setupgame">PictoSwap</h1>
         </div>
-      
+        
+
         <div class="search searchgrid">
           <div class="searchmain">
             <SearchBarContainer/>
@@ -24,11 +27,10 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
               }>Search!</button>
           </div>
 
-            
           <div key="fancyAlbum" class="album searchbulk">
             
             { // Måste förhindra att man väljer videor
-                (!searchResults) && <img src="../img/loading.gif"></img> 
+                (!searchResults) && <img src={loading} width="100px"></img>
                 || 
         
                 
