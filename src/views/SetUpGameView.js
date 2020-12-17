@@ -1,6 +1,8 @@
 
-import SearchBarContainer from "../presenters/SearchBarContainer"
-const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSearchQuery, promiseAction, setPhotoURL, photoURL}) => {
+import SearchBarContainer from "../presenters/SearchBarContainer";
+import loading from '../img/loading.gif';
+
+const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSearchQuery, promiseAction, setPhotoURL, photoURL, pokemon}) => {
 
 
   return (
@@ -10,7 +12,8 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
         <div class="header">
           <h1 class="setupgame">PictoSwap</h1>
         </div>
-      
+        
+
         <div class="search searchgrid">
           <div class="searchmain">
             <SearchBarContainer/>
@@ -24,26 +27,30 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
               }>Search!</button>
           </div>
 
-            
           <div key="fancyAlbum" class="album searchbulk">
-
+            
             { // Måste förhindra att man väljer videor
-                searchResults.filter(x=>(
-                  x.images && 
-                  !(x.images[0].animated) && 
-                  !(x.images[0].height > x.images[0].width
-                    ) &&
-                    !(x.images[0].height>800)) ? true : false).map(x=><img 
-                    src={x.images[0].link}
-                    alt="wow"
-                    width="100px"
-                    onClick={()=>setPhotoURL(x.images[0].link)}
-                    style={{cursor:"pointer"}}
-                    ></img>)
+                (!searchResults) && <img src={loading} width="100px"></img>
+                || 
+        
+                
+                  searchResults.filter(x=>(
+                    x.images && 
+                    !(x.images[0].animated) && 
+                    !(x.images[0].height > x.images[0].width
+                      ) &&
+                      !(x.images[0].height>800)) ? true : false).map(x=><img 
+                      src={x.images[0].link}
+                      alt="wow"
+                      width="100px"
+                      onClick={()=>setPhotoURL(x.images[0].link)}
+                      style={{cursor:"pointer",background:"url(https://source.unsplash.com/random/1000x1000)"}}
+                      ></img>)
               }
           </div>
           
         </div>
+        
         <div class="footer">
         <div class="uglysolution">
         <span>

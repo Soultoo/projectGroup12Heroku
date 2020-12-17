@@ -107,11 +107,11 @@ export function Board({nav}){
       img.src = url;
       if (img.naturalWidth < img.naturalHeight){
 
-        return [img.naturalWidth, true];
+        return [img.naturalWidth, img.naturalHeight];
       }
       
       else {
-        return [img.naturalHeight,false];
+        return [img.naturalHeight,img.naturalWidth];
       }
     }
     const gameWon = winCheck(tilesArray);

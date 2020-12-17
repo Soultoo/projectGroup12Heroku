@@ -103,7 +103,7 @@ export const resetGame = () => {
 export const promiseAction = (dispatch, promise, actionType) => {
   if(!promise)
        return {type:actionType, payload:null};  // no ongoing promise
-  promise.then(data=>dispatch({payload:data.data, type:actionType}))
+  promise.then(data=>dispatch({payload:data, type:actionType}))
           .catch(error=>dispatch({payload:error, type:actionType}));
   return {type:actionType, payload:{}}; 
                               // ongoing promise, no data or error yet

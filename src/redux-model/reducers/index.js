@@ -45,10 +45,18 @@ export const photoURLRed = (state="", action) => {
 
 // MÅSTE HA ERROR HANDLING!!!!
 export const searchResultsRed = (state=[], action) => {
-  if ((action.payload || action.payload === []) && action.type == "SETSEARCHRESULTS" 
+  console.log("payload:");
+  console.log(action.payload);
+  console.log(typeof action.payload);
+  if ((action.payload || action.payload === [] ) && action.type == "SETSEARCHRESULTS" 
     && !(Object.keys(action.payload).length === 0 && action.payload.constructor === Object)) 
-    return action.payload;
-  
+    {console.log("returns action.payload.data");
+    return action.payload.data;}
+  else if (action.payload && (Object.keys(action.payload).length === 0 && action.payload.constructor === Object))
+    {console.log("returns false");
+    return false;}
+    
+  console.log("returns []");
   return [];
 }
 
