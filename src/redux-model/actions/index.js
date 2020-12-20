@@ -28,7 +28,12 @@ export const setPhotoURL = (URL) => {
   }
 }
 
-
+export const setDifficulty = (nr) => {
+  return {
+    type: "SETDIFFICULTY",
+    payload: nr
+  }
+}
 
 export const setNumberOfTiles = (nr) => {
   return {

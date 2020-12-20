@@ -15,14 +15,13 @@ export function Tile(props) {
        } = props;
   const { row:row, col:col } = getMatrixPosition(index, boxGrid);
   const visualPos = getVisualPosition(row, col, width, height);
-  //console.log(visualPos, "visualPos")
-  //console.log(`-${(100) * (coordArrayIndex.posX)}%`)
-  //console.log(`-${(100) * (coordArrayIndex.posY)}%`)
-  //console.log(boxGrid, 2) // row = NaN - fixed!!
+  
   const boardSize0=imgDim[0];
   const boardSize1=imgDim[1];
-  console.log(boardSize1, boardSize0);
-  console.log((boardSize1/boardSize0)*400)
+
+ 
+
+ 
   const tileStyle = {
 
     //width: `calc(100% / ${boxGrid})`,
@@ -36,7 +35,7 @@ export function Tile(props) {
 
     //backgroundPosition: `-${(100) * (coordArrayIndex.posX)}% -${(100) * (coordArrayIndex.posY)}%`,
     //backgroundPosition: `${(100 / boxGrid) * (tile % boxGrid)}% ${(100 / boxGrid) * (Math.floor(tile / boxGrid))}%`,
-    backgroundPosition: `${-(((boardSize1/boardSize0)*400 - 400)/2)  -((tile % boxGrid) * 100)}px ${-((Math.floor(tile / boxGrid)) * 100)}px`,
+    backgroundPosition: `${-(((boardSize1/boardSize0)*400 - 400)/2)  -((tile % boxGrid) * 400/boxGrid)}px ${-((Math.floor(tile / boxGrid)) * 400/boxGrid)}px`,
 
     
     

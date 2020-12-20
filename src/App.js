@@ -115,8 +115,7 @@ function App() {
   /*window.onload = function() {
     const secondTimer = setInterval(()=>{
 
-      (console.log("1s"));
-      (console.log(stopWatchRunning));
+   
       if (stopWatchRunning) dispatch(actions.increment1Sec())
     }, 1000)
   }*/

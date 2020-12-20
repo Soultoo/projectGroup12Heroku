@@ -3,7 +3,7 @@ import { canSwap, winCheck, shuffleTilePositions, pictoSwap } from "./boardFunct
 import '../board.css'; 
 import BoardView from '../views/boardView';
 import { useSelector, useDispatch } from "react-redux";
-import { increment, setHighScore } from '../redux-model/actions';
+import { increment, setHighScore, setDifficulty } from '../redux-model/actions';
 import firestore from "../js/firebase" // Dessa 2 behövs alltså för att utnyttja databasen (denna och nedan)
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
@@ -17,9 +17,11 @@ export function Board({nav}){
     const counter= useSelector(state=>state.counter)
 
     
-    const rows = 4;
-    const columns = 4;
-    const GRID_SIZE = 4;
+    const difficulty = useSelector(state=> state.difficultyRed); /////new! här eller i setUpGameContainer
+    
+    const rows = difficulty;
+    const columns = difficulty;
+    const GRID_SIZE = difficulty;
     const TILE_COUNT = GRID_SIZE*GRID_SIZE;
     
     const amountOfTiles=rows*columns;
@@ -27,7 +29,7 @@ export function Board({nav}){
 
     const [tilesArray, setTilesArray] = useState([...Array(amountOfTiles).keys()]);
     const [gameStarted, setGameStarted] = useState(false);
-    console.log('is started:', gameStarted);
+    
 
 
     React.useEffect(function() { 

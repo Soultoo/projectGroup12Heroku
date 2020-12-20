@@ -9,7 +9,7 @@ import { setImagePromise } from "../redux-model/actions";
 export const Images =(promise)=>{
 
     const[data, error]=usePromise(promise);
-    console.log(data);
+    
 return <React.Fragment>{promiseNoData(promise, data, error) || <p>Image gallery placeholder</p>}</React.Fragment>
 
 }

@@ -1,7 +1,7 @@
 
 import { act } from "react-dom/test-utils";
 import { combineReducers } from "redux";
-import { getWidth } from "../actions";
+import { getWidth, setDifficulty } from "../actions";
 
 export const counter = (state = 0, action) => {
   switch (action.type) {
@@ -45,18 +45,17 @@ export const photoURLRed = (state="", action) => {
 
 // MÅSTE HA ERROR HANDLING!!!!
 export const searchResultsRed = (state=[], action) => {
-  console.log("payload:");
-  console.log(action.payload);
-  console.log(typeof action.payload);
+  
+  
   if ((action.payload || action.payload === [] ) && action.type == "SETSEARCHRESULTS" 
     && !(Object.keys(action.payload).length === 0 && action.payload.constructor === Object)) 
-    {console.log("returns action.payload.data");
+    {
     return action.payload.data;}
   else if (action.payload && (Object.keys(action.payload).length === 0 && action.payload.constructor === Object))
-    {console.log("returns false");
+    {
     return false;}
     
-  console.log("returns []");
+  
   return [];
 }
 
@@ -112,7 +111,9 @@ export const highscoreRed =(state=0, action)=>{
   return (action.payload && action.type == "SETHIGHSCORE") ? action.payload : state;
 }
 
-
+export const difficultyRed = (state=4, action) => {
+  return (action.payload && action.type == "SETDIFFICULTY") ? action.payload : state;
+}
 
 // Combined Reducer
 
@@ -136,6 +137,7 @@ export const allReducers = combineReducers({
   imagePromise: imagePromiseRed,
   chosenAlbumRed: chosenAlbumRed,
 
-  highscore:highscoreRed
+  highscore:highscoreRed,
+  difficultyRed:difficultyRed
 });
 // index, position, image, width, height, boardSize (rows, cols)

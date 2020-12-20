@@ -21,12 +21,12 @@ const HighScoreContainer = ({nav}) => {
   
 
   const scoreStoreRef = firestore.collection("highScores");
-  const query = scoreStoreRef.orderBy("score").limit(100);
+  const query = scoreStoreRef.limit(100);
   const [scores] = useCollectionData(query,{idField:"id"});
 
   useEffect(()=>{
-    console.log("scores:")
-    console.log(scores)
+    
+    
                 }, [scores])
 
   return HighScoreView({nav, scores})

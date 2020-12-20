@@ -2,7 +2,18 @@
 import SearchBarContainer from "../presenters/SearchBarContainer";
 import loading from '../img/loading.gif';
 
-const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSearchQuery, promiseAction, setPhotoURL, photoURL, pokemon}) => {
+const SetUpGameView = ({
+  nav, 
+  dispatch, 
+  searchAlbums, 
+  query, 
+  searchResults, 
+  setSearchQuery, 
+  promiseAction, 
+  setPhotoURL, 
+  photoURL, 
+  difficulty, 
+  setDifficulty}) => {
 
 
   return (
@@ -12,7 +23,16 @@ const SetUpGameView = ({nav, dispatch, searchAlbums, query, searchResults, setSe
         <div class="header">
           <h1 class="setupgame">PictoSwap</h1>
         </div>
-        
+          
+            <label for="easy">Easy (3x3)</label>
+            <input type="radio" id="easy" name="diff" value="3" checked={(difficulty==3)} onChange={(event) => setDifficulty(parseInt(event.target.value))} ></input>
+          
+            <label for="medium">Medium (4x4)</label>
+            <input type="radio" id="medium" name="diff" checked={(difficulty==4)} value="4" onChange={(event) => setDifficulty(parseInt(event.target.value)) } ></input>
+         
+            <label for="hard">Hard (5x5)</label>
+            <input type="radio" id="hard" name="diff" value="5" checked={(difficulty==5)} onChange={(event) => setDifficulty(parseInt(event.target.value))}></input>
+              
 
         <div class="search searchgrid">
           <div class="searchmain">

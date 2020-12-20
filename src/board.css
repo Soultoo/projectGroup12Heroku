@@ -29,7 +29,23 @@
 
 
 
-.board {
+
+
+  .gamecontainer{
+    width:80%;
+    height: 100%;
+    
+  }
+  .board3 {
+    position: relative;
+    display: grid;
+    padding: 0;
+    grid-gap: 5px;
+    grid-template-rows: repeat(3, 133px);
+    grid-template-columns: repeat(3, 133px);
+    margin: auto;
+  }
+  .board4 {
     position: relative;
     display: grid;
     padding: 0;
@@ -38,9 +54,12 @@
     grid-template-columns: repeat(4, 100px);
     margin: auto;
   }
-
-  .gamecontainer{
-    width:80%;
-    height: 100%;
-    
+  .board5 {
+    position: relative;
+    display: grid;
+    padding: 0;
+    grid-gap: 5px;
+    grid-template-rows: repeat(5, 80px);
+    grid-template-columns: repeat(5, 80px);
+    margin: auto;
   }

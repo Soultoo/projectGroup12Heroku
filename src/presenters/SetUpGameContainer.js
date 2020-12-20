@@ -1,10 +1,7 @@
 // INTE KLAR LÄGG IN RESTEN
 
 import { React, useEffect } from "react" // den här importen kanske ska vara useDispatch
-
 import { connect } from "react-redux";
-
-
 import { useSelector, useDispatch } from "react-redux";
 
 import SetUpGameView from "../views/SetUpGameView";
@@ -13,14 +10,14 @@ import { searchAlbums } from "../api/ImgurSource"
 
 // actions:
 
-import { setSearchQuery, promiseAction, setPhotoURL  } from "../redux-model/actions"
+import { setSearchQuery, promiseAction, setPhotoURL, setDifficulty } from "../redux-model/actions"
 
 // förbereda props
 const SetUpGameContainer = ({nav}) => {
 
   const dispatch = useDispatch();
 
-  useEffect(()=>(console.log("effect")), []); // KÖr bara när huvudkomponenten renderar!!!
+  
   
 
   const mapStateToProps = (state) => {
@@ -28,19 +25,18 @@ const SetUpGameContainer = ({nav}) => {
       query: state.searchQueryRed,
       searchResults: state.searchResultsRed,
       photoURL:state.photoURLRed,
-      //difficulty:state.difficultyRed
+      difficulty:state.difficultyRed
     }
   }
   const searchResults = useSelector(state=>state.searchQueryRed);
 
-  useEffect(()=>(console.log("effect searchResults")), [searchResults]); // KÖr bara när huvudkomponenten renderar!!!
-
+  
   const mapDispatchToProps = dispatch => {
     return {
       setSearchQuery: (q) => dispatch(setSearchQuery(q)),
       promiseAction: (dispatch,promise,actionName) => dispatch(promiseAction(dispatch,promise,actionName)),
       setPhotoURL: (URL) => dispatch(setPhotoURL(URL)),
-      //setDifficulty: (nr) => dispatch(setDifficulty(nr))
+      setDifficulty: (nr) => dispatch(setDifficulty(nr))
     }
   }
 
