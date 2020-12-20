@@ -14,7 +14,7 @@ export function Board({nav}){
     
     const imageURL = useSelector(state=>state.photoURLRed);
     const dispatch = useDispatch();
-    const counter= useSelector(state=>state.counter)
+    const counter= useSelector(state=>state.counter);
 
     
     const difficulty = useSelector(state=> state.difficultyRed); /////new! här eller i setUpGameContainer
@@ -79,8 +79,8 @@ export function Board({nav}){
 
     const scoreStoreRef = firestore.collection("highScores");
 
-    const handleAddToHighScore=(name, counter)=>{
-      scoreStoreRef.add({name:name, score:counter});
+    const handleAddToHighScore=(name, counter, difficulty)=>{
+      scoreStoreRef.add({name:name, score:counter, difficulty:difficulty});
       nav();
 
       // ADD TO SCORE DATABASE SOMEHOW
@@ -137,6 +137,7 @@ return (<BoardView
   style = {style}
   handleAddToHighScore = {handleAddToHighScore}
   counter={counter}
+  difficulty={difficulty}
   />)    
 }
 
